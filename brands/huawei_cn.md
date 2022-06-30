@@ -521,7 +521,7 @@
 
 `RTE-AL00`: HUAWEI nova 9 Pro 4G 全网通版
 
-**HUAWEI nova 9 SE (`JuliaN`):**
+**HUAWEI nova 9 SE (`JuliaQN`):**
 
 `JLN-AL00`: HUAWEI nova 9 SE 4G 全网通版
 
@@ -791,7 +791,11 @@
 
 **华为畅享 50 (`Mega`):**
 
-`MGA-AN00`: 华为畅享 50 全网通版
+`MGA-AL00`: 华为畅享 50 全网通版
+
+**华为畅享 50 Pro ():**
+
+`CTR-AL00`: 华为畅享 50 Pro 全网通版
 
 ## 平板电脑
 
