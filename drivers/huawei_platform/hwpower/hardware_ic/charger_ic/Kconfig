@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: GPL-2.0+
+#
+# charger ic drivers
+#
+
+config BQ2560X_CHARGER
+	bool "bq2560x charger"
+	default n
+	help
+	  Say Y here to enable bq2560x charger driver.
+
+config RT9471_CHARGER
+	bool "rt9471 charger"
+	default n
+	help
+	  Say Y here to enable rt9471 charger driver.
+
+

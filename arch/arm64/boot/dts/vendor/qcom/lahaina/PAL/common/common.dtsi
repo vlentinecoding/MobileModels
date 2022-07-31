@@ -1,0 +1,22 @@
+#include "../../common/common.dtsi"
+#include "huawei_audio.dtsi"
+#include "huawei_fp.dtsi"
+#include "huawei_bsp.dtsi"
+#include "huawei_charger.dtsi"
+#include "huawei_dp.dtsi"
+#include "huawei_ir.dtsi"
+#include "huawei-sensor.dtsi"
+#include "huawei_mmc.dtsi"
+#include "huawei_tp.dtsi"
+#include "huawei_fac.dtsi"
+#include "huawei_gpio.dtsi"
+#include "huawei_usb.dtsi"
+&als_after_sale_TCS3718ALSPRX {
+    compatible = "TCS3718ALSPRX";
+    als_after_sale_product = <28>;
+    als_after_sale_xl = <1935>;
+    als_after_sale_yl = <138>;
+    als_after_sale_xr = <1835>;
+    als_after_sale_yr = <38>;
+    als_after_sale_gamma = <0>;
+};

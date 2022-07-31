@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0+
+obj-$(CONFIG_BQ2560X_CHARGER) += bq2560x/
+obj-$(CONFIG_RT9471_CHARGER) += rt9471/
+
+ifeq ($(HLTHERM_RUNTEST), true)
+    CFLAGS_KERNEL += -DCONFIG_HLTHERM_RUNTEST
+endif

@@ -1,0 +1,30 @@
+#include "../../../yupik-idp-pm7250b.dtsi"
+#include "../../common/huawei_dev_detect/huawei_dev_detect.dtsi"
+#include "huawei_audio.dtsi"
+#include "huawei_bsp.dtsi"
+#include "huawei_mmc.dtsi"
+#include "huawei_usb.dtsi"
+#include "huawei_charger.dtsi"
+#include "huawei-lcd.dtsi"
+#include "huawei_dp.dtsi"
+#include "huawei_fac.dtsi"
+#include "huawei_tp.dtsi"
+#include "huawei-sensor.dtsi"
+#include "huawei_fp.dtsi"
+
+&dev_detect {
+    laser = <2>;
+};
+
+/*
+ * Each set of pins contains the pin number and pins voltage
+ * values, and must end with the names _num and _val.
+ */
+&gpio_check {
+	/* 343 : GPIO007, tlmm BASE = 336 */
+	/* 369 : GPIO033, tlmm BASE = 336 */
+	/* 477 : GPIO141, tlmm BASE = 336 */
+	buckle_num = "343 369 477";
+	buckle_val = "0 0 0";
+};
+
