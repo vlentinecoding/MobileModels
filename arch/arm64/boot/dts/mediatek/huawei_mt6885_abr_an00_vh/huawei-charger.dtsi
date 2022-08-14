@@ -1,0 +1,12 @@
+#include "../huawei_charger/mt6885_abr_huawei_charger.dtsi"
+
+&i2c7 {
+	rt9426_battery@55{
+		status = "disabled";
+	};
+	bq27z561_fg@55 {
+		reg = <0x55>;
+		compatible = "huawei,bq27z561";
+		status = "ok";
+	};
+};

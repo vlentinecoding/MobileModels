@@ -1,0 +1,18 @@
+#include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/pinctrl/mt6853-pinfunc.h>
+/dts-v1/;
+/plugin/;
+
+#include "huawei_mt6853_frl_tn00_ve/huawei.dtsi"
+
+&rootparam {
+    mtk,boardid = <4 0 9 8>;
+    mtk,board_name = "FRL_TN00_VE";
+    mtk,product_name = "FRL-TN00";
+    hardware_version = "HL7FRLM";
+};
+
+#include <k6853v1_64/cust.dtsi>
+
+/*End of this file, DO NOT ADD ANYTHING HERE*/

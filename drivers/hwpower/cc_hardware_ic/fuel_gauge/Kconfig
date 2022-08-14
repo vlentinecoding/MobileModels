@@ -1,0 +1,13 @@
+#
+# fuel gauge ic drivers
+#
+
+config CW2217_FUEL_GAUGE
+	bool "cw2217 fuel gauge"
+	depends on FUEL_GAUGE
+	default n
+	help
+	  Say Y here to enable cw2217 fuel gauge driver.
+	  this driver provides some interfaces to the coul.
+	  also support a few high accuracy battery elements.
+	  for example current and voltage.

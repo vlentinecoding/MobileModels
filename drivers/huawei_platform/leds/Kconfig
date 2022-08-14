@@ -1,0 +1,13 @@
+#
+# leds info
+#
+
+menuconfig HUAWEI_LEDS
+    bool "Huawei leds info"
+    default n
+    help
+      Say yes if you want device detect driver.
+      This is for device connected version. If unsure, say N here.
+
+source "drivers/huawei_platform/leds/aw2015/Kconfig"
+source "drivers/huawei_platform/leds/aw2016/Kconfig"

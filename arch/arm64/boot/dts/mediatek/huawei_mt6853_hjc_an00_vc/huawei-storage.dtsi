@@ -1,0 +1,7 @@
+&msdc1 {
+	no-sd;
+};
+
+&ufshci {
+	ufs-no-tw;
+};
