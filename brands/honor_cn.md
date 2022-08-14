@@ -422,6 +422,10 @@
 
 `KKG-AN70`: 荣耀 X30 Max 5G 全网通版
 
+**荣耀 X40i:**
+
+`DIO-AN00`: 荣耀 X40i 5G 全网通版
+
 ## 荣耀 Play 系列
 
 **荣耀 V9 Play (`Jimmy`):**
@@ -664,7 +668,7 @@
 
 `HJC-LX9`: 荣耀畅玩 20 Pro 全网通版
 
-**荣耀畅玩 30:**
+**荣耀畅玩 30 (`Vinnie`):**
 
 `VNE-AN00`: 荣耀畅玩 30 5G 全网通版
 
@@ -753,6 +757,10 @@
 `AGM-W09HN`: 荣耀平板 Z3 9.7 英寸 Wi-Fi 版
 
 `AGM-AL09HN`: 荣耀平板 Z3 9.7 英寸 全网通版
+
+**荣耀平板 8:**
+
+`HEY-W09`: 荣耀平板 8 12 英寸 Wi-Fi 版
 
 **荣耀 Waterplay (`Haydn`):**
 
@@ -905,6 +913,12 @@
 `GLO-F56`: 荣耀 MagicBook 14 2022 i5
 
 `GLO-F76`: 荣耀 MagicBook 14 2022 i7
+
+**荣耀 MagicBook 14 2022 锐龙版:**
+
+`GLO-N56`: 荣耀 MagicBook 14 2022 R5
+
+`GLO-N76`: 荣耀 MagicBook 14 2022 R7
 
 **荣耀 MagicBook 15 (`BohrB`):**
 
@@ -1075,6 +1089,20 @@
 `HN55DNTA`: 荣耀智慧屏 X2 55 英寸
 
 `HN65DNTA`: 荣耀智慧屏 X2 65 英寸
+
+**荣耀智慧屏 X3:**
+
+`HN55DNTS`: 荣耀智慧屏 X3 55 英寸
+
+`HN65DNTS`: 荣耀智慧屏 X3 65 英寸
+
+**荣耀智慧屏 X3i:**
+
+`HN55BYRA`: 荣耀智慧屏 X3i 55 英寸
+
+`HN65BYRA`: 荣耀智慧屏 X3i 65 英寸
+
+`HN75BYRA`: 荣耀智慧屏 X3i 75 英寸
 
 ## 荣耀独立前产品 
 

@@ -319,6 +319,28 @@
 
 `2201122C`: Xiaomi 12 Pro China
 
+**[`L2M`] Xiaomi 12 Pro Dimensity (`daumier`):**
+
+`2207122MC`: Xiaomi 12 Pro Dimensity China
+
+**[`L9`] Xiaomi 12 Lite (`taoyao`):**
+
+`2203129G`: Xiaomi 12 Lite Global
+
+`2203129I`: Xiaomi 12 Lite India
+
+**[`L3S`] Xiaomi 12S (`mayfly`):**
+
+`2206123SC`: Xiaomi 12S China
+
+**[`L2S`] Xiaomi 12S Pro (`unicorn`):**
+
+`2206122SC`: Xiaomi 12S Pro China
+
+**[`L1`] Xiaomi 12S Ultra (`thor`):**
+
+`2203121C`: Xiaomi 12S Ultra China
+
 **[`X5`] Mi Note (`virgo`):**
 
 `2015011`: Mi Note Global
@@ -398,6 +420,10 @@
 **[`K8`] Xiaomi MIX 4 (`odin`):**
 
 `2106118C`: Xiaomi MIX 4 China
+
+**[`L18`] Xiaomi MIX Fold 2 (`zizhan`):**
+
+`22061218C`: Xiaomi MIX Fold 2
 
 **[`B3`] Mi Max (`hydrogen`):**
 
@@ -511,9 +537,13 @@
 
 `M2105K81AC`: Xiaomi Pad 5 Pro Wi-Fi
 
-**[`K81`] Xiaomi Pad 5 Pro (`enuma`):**
+**[`K81`] Xiaomi Pad 5 Pro 5G (`enuma`):**
 
 `M2105K81C`: Xiaomi Pad 5 Pro 5G
+
+**[`L81A`] Xiaomi Pad 5 Pro 12.4 (`dagu`):**
+
+`22081281AC`: Xiaomi Pad 5 Pro 12.4
 
 ## Redmi phones
 
@@ -815,11 +845,11 @@
 
 `22011119UY`: Redmi 10 2022 Global (NFC)
 
-**[`L19`] Redmi 10 5G / Redmi 10 Prime+ 5G (`light`):**
+**[`L19`] Redmi 10 5G / Redmi 11 Prime 5G (`light`):**
 
 `22041219G`: Redmi 10 5G Global
 
-`22041219I`: Redmi 10 Prime+ 5G India
+`22041219I`: Redmi 11 Prime 5G India
 
 **[`L19N`] Redmi 10 5G (`thunder`):**
 
@@ -845,7 +875,7 @@
 
 `220233L2G`: Redmi 10A Global
 
-`220233L2I`: Redmi 10A India
+`220233L2I`: Redmi 10A India / Redmi 10A Sport India
 
 `220233L2C`: Redmi 10A China
 
@@ -1299,6 +1329,14 @@
 
 `21121210C`: Redmi K50G China
 
+**[`L12`] Redmi K50 Ultra (`diting`):**
+
+`22081212C`: Redmi K50 Ultra China
+
+**[`L16`] Redmi K50i (`xagain`):**
+
+`22041216I`: Redmi K50i India
+
 **[`H3C`] Redmi Pro (`omega`):**
 
 `2016020`: Redmi Pro (32GB)
@@ -1447,7 +1485,11 @@
 
 **[`K16A`] POCO M4 Pro 5G (`evergo`):**
 
-`21091116AI`: POCO M4 Pro 5G India
+`22031116AI`: POCO M4 Pro 5G India
+
+**[`K7BP`] POCO M5s (`rosemaryp`):**
+
+`2207117BPG`: POCO M5s Global
 
 **[`C3M`] POCO C3 (`angelicain`):**
 

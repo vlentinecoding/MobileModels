@@ -322,6 +322,28 @@
 
 `2201122G`: Xiaomi 12 Pro 国际版
 
+**[`L2M`] Xiaomi 12 Pro 天玑版 (`daumier`):**
+
+`2207122MC`: Xiaomi 12 Pro 天玑版 全网通版
+
+**[`L9`] Xiaomi 12 Lite (`taoyao`):**
+
+`2203129G`: Xiaomi 12 Lite 国际版
+
+`2203129I`: Xiaomi 12 Lite 印度版
+
+**[`L3S`] Xiaomi 12S (`mayfly`):**
+
+`2206123SC`: Xiaomi 12S 全网通版
+
+**[`L2S`] Xiaomi 12S Pro (`unicorn`):**
+
+`2206122SC`: Xiaomi 12S Pro 全网通版
+
+**[`L1`] Xiaomi 12S Ultra (`thor`):**
+
+`2203121C`: Xiaomi 12S Ultra 全网通版
+
 ## 小米 Note 系列
 
 **[`X5`] 小米 Note (`virgo`):**
@@ -409,6 +431,10 @@
 **[`K8`] Xiaomi MIX 4 (`odin`):**
 
 `2106118C`: Xiaomi MIX 4 全网通版
+
+**[`L18`] Xiaomi MIX Fold 2 (`zizhan`):**
+
+`22061218C`: Xiaomi MIX Fold 2
 
 ## 小米 Max 系列
 
@@ -530,9 +556,13 @@
 
 `M2105K81AC`: 小米平板 5 Pro Wi-Fi 版
 
-**[`K81`] 小米平板 5 Pro (`enuma`):**
+**[`K81`] 小米平板 5 Pro 5G (`enuma`):**
 
-`M2105K81C`: 小米平板 5 Pro 5G 版
+`M2105K81C`: 小米平板 5 Pro 5G
+
+**[`L81A`] 小米平板 5 Pro (`dagu`):**
+
+`22081281AC`: 小米平板 5 Pro 12.4 英寸
 
 ## 红米 / Redmi 数字系列
 
@@ -838,11 +868,11 @@
 
 `22011119UY`: Redmi 10 2022 国际版 (NFC)
 
-**[`L19`] Redmi 10 5G / Redmi 10 Prime+ 5G (`light`):**
+**[`L19`] Redmi 10 5G / Redmi 11 Prime 5G (`light`):**
 
 `22041219G`: Redmi 10 5G 国际版
 
-`22041219I`: Redmi 10 Prime+ 5G 印度版
+`22041219I`: Redmi 11 Prime 5G 印度版
 
 **[`L19N`] Redmi 10 5G (`thunder`):**
 
@@ -870,7 +900,7 @@
 
 `220233L2G`: Redmi 10A 国际版
 
-`220233L2I`: Redmi 10A 印度版
+`220233L2I`: Redmi 10A 印度版 / Redmi 10A Sport 印度版
 
 ## 红米 / Redmi Note 系列
 
@@ -1334,6 +1364,14 @@
 
 `21121210C`: Redmi K50 电竞版 全网通版
 
+**[`L12`] Redmi K50 至尊版 (`diting`):**
+
+`22081212C`: Redmi K50 至尊版 全网通版
+
+**[`L16`] Redmi K50i (`xagain`):**
+
+`22041216I`: Redmi K50i 印度版
+
 ## 其他红米 Redmi 手机
 
 **[`H3C`] 红米 Pro (`omega`):**
@@ -1484,7 +1522,11 @@
 
 **[`K16A`] POCO M4 Pro 5G (`evergo`):**
 
-`21091116AI`: POCO M4 Pro 5G 印度版
+`22031116AI`: POCO M4 Pro 5G 印度版
+
+**[`K7BP`] POCO M5s (`rosemaryp`):**
+
+`2207117BPG`: POCO M5s 国际版
 
 **[`C3M`] POCO C3 (`angelicain`):**
 

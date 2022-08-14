@@ -1,4 +1,25 @@
 # CHANGELOG
+## 2022-08-11
+- `xiaomi_en` Add Redmi K50 Ultra.
+## 2022-08-09
+- `xiaomi_en` Add Xiaomi MIX Fold 2 & Xiaomi Pad 5 Pro 12.4。
+## 2022-08-04
+- `oneplus_en` Add OnePlus 10T.
+## 2022-07-27
+- `xiaomi_en` Add Redmi 10A Sport (India).
+## 2022-07-20
+- `oppo_global_en` Add several new models.
+- `xiaomi_en` Add Redmi K50i (India).
+## 2022-07-19
+- `honor_global_en` Add HONOR X8 5G.
+## 2022-07-13
+- `mitv_global_en` Add Xiaomi TV A2 series.
+## 2022-07-11
+- `google_en` Add Pixel 6a.
+## 2022-07-09
+- `meizu_en` Add mblu 10/10s.
+## 2022-07-04
+- `xiaomi_en` Add Xiaomi 12S series & Xiaomi 12 Lite.
 ## 2022-06-30
 - `oppo_global_en` Add several new models.
 - `realme_global_en` Add several new models.
