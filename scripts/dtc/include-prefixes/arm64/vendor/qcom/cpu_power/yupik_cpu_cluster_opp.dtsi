@@ -1,0 +1,26 @@
+/ {
+	cpus {
+		cpu-map {
+			cluster0 {
+				honor_cluster0: honor_cluster_cfg@0 {
+					compatible = "honor,cpu_cluster_0";
+					honor,cpu-current-table = <17826 13361 15433 19413 27089 34831 55791 64848 73113>;
+				};
+			};
+
+			cluster1 {
+				honor_cluster1: honor_cluster_cfg@1 {
+					compatible = "honor,cpu_cluster_1";
+					honor,cpu-current-table = <37713 44307 68293 83899 106812 116617 159141 176037 182037 245147>;
+				};
+			};
+
+			cluster2 {
+				honor_cluster2: honor_cluster_cfg@2 {
+					compatible = "honor,cpu_cluster_2";
+					honor,cpu-current-table = <42760 62411 92385 113855 128168 132465 162832 193374 214210 216424>;
+				};
+			};
+		};
+	};
+};

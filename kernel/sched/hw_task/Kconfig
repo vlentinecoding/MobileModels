@@ -1,0 +1,6 @@
+config HW_ED_TASK
+	bool "Huawei early detection tasks for frequency guidance"
+	depends on SCHED_WALT
+	default n
+	help
+	  Huawei early detection tasks for frequency guidance.

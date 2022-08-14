@@ -1,0 +1,11 @@
+&pm8350b_haptics {
+	qcom,vmax-mv = <1200>;
+	auto_res_disable;
+	calib_freq_range = <155 185>;
+};
+
+&honor_haptics_wrapper {
+	compatible = "honor,haptics_wrapper";
+	qhaptics_handle = <&pm8350b_haptics>;
+	play_rate_hz = <24000>;
+};

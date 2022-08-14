@@ -1,0 +1,13 @@
+#
+# HUAWEI modem interface
+#
+config HUAWEI_MODEM_CRASH_LOG
+	tristate "modem crash exception for apr"
+	default n
+
+config SUBSYS_CRASH_REASON_UPLOAD
+	bool "Collect subsystem crash log for COMMERCIAL_USER or OVERSEA_COMMERCIAL_USER"
+	default n
+	help
+	  Save subsystem crash reason to /data/log/reliability/faultdect and
+	  upload to dir Logsevice/901/

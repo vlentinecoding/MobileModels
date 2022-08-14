@@ -1,0 +1,23 @@
+/* fingerprint panel config */
+&soc {
+	huawei_fingerprint {
+		compatible = "fpc,fingerprint";
+		fingerprint,reset_gpio = <&tlmm 130 0>;
+		fingerprint,avdd_en_gpio = <&tlmm 101 0>;
+		fingerprint,custom_timing_scheme = <2>;
+		fingerprint,use_tp_irq = <1>;
+		status = "ok";
+	};
+};
+&fingerprint {
+	fingerprint,product = "rena";
+	fingerprint,force_storage = <1>;
+        fingerprint,sensor_type = <516>;
+	fingerprint,top_left_corner_x = <421>; /* only for UD */
+	fingerprint,top_left_corner_y = <872>; /* only for UD */
+	fingerprint,bottom_right_corner_x = <588>; /* only for UD */
+	fingerprint,bottom_right_corner_y = <951>; /* only for UD */
+	fingerprint,tp_hover_support = <0>;
+	fingerprint,radius = <108>;
+        fingerprint,fp_spi_device_id = <14>;
+};

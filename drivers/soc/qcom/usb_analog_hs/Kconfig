@@ -1,0 +1,13 @@
+
+config USB_ANALOG_HS
+	tristate "Support for usb analog headset"
+	default n
+	help
+	  Say Y here if you want to support usb analog headset
+
+config USB_ANALOG_HS_MOS
+	tristate "Support for usb analog headset with MOS switch"
+	default n
+	depends on USB_ANALOG_HS
+	help
+	  Say Y here if you want to support usb analog headset with MOS switch

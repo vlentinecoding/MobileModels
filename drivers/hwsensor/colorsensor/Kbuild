@@ -1,0 +1,13 @@
+EXTRA_CFLAGS := -I$(src)/../include
+
+obj-$(CONFIG_SENSORS_DAX) += as7341.o
+ccflags-y := -std=gnu99 -Wno-declaration-after-statement
+as7341-y += ams_as7341.o color_sensor.o
+
+obj-$(CONFIG_SENSORS_DAX) += tcs3408.o
+ccflags-y := -std=gnu99 -Wno-declaration-after-statement
+tcs3408-y += ams_tcs3707.o color_sensor.o
+
+obj-$(CONFIG_SENSORS_DAX) += rohm_bu27006.o
+ccflags-y := -std=gnu99 -Wno-declaration-after-statement
+rohm_bu27006-y += rohm_bu27006.o color_sensor.o

@@ -1,0 +1,45 @@
+&tlmm {
+	hardware_detector_left:hardware_detector_left {
+		mux {
+			pins = "gpio122";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio122";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+	hardware_detector_bottom:hardware_detector_bottom {
+		mux {
+			pins = "gpio126";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio126";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+	sdcard_detector:sdcard_detector {
+		mux {
+			pins = "gpio92";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio92";
+			drive-strength = <2>;
+			bias-disable; /* NO PULL */
+		};
+	};
+};
+
+&hardware_detector {
+	compatible = "honor,hardware_detector_info";
+	pinctrl-names = "default";
+	pinctrl-0 = <&hardware_detector_left &hardware_detector_bottom &sdcard_detector>;
+	gpio_detector_left = <&tlmm 122 0>;
+	gpio_detector_bottom = <&tlmm 126 0>;
+	gpio_sdcard_detector = <&tlmm 92 0>;
+	#gpio-cells = <0>;
+};

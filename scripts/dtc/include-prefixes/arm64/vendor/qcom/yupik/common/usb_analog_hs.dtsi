@@ -1,0 +1,26 @@
+
+&usb_analog_hs {
+    compatible = "honor,usb_analog_hs";
+    status = "disabled";
+
+    honor,analog-hs-switch = <&usb_analog_hs_mos>;
+};
+
+&usb_analog_hs_mos {
+    compatible = "honor,usb_analog_hs_mos";
+    status = "disabled";
+
+    honor,analog-hs-switch = <&usb_analog_hs>;
+    mic_switch_delay = <150>; /* unit: ms */
+    gpio_type = <0>; /* gpio type: 0 soc, 1 codec */
+    switch_mic_gnd = <&tlmm 96 0>; /* GPIO_096_AUDIO_EN */
+    switch_lr_channel-supply = <&L9C>; /* VREG_L9C_2P96 */
+};
+
+&fsa4480 {
+    status = "disabled";
+};
+
+&sde_dp {
+    qcom,dp-aux-switch = <&usb_analog_hs>;
+};

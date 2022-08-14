@@ -1,0 +1,58 @@
+&qupv3_se2_i2c {
+	status = "ok";
+
+	aw882xx_smartpa@30 { // speaker
+		compatible = "awinic,aw882xx_smartpa";
+		reg = <0x30>;
+		reset-gpio = <&tlmm 15 0>;
+		irq-gpio = <&tlmm 14 0x2008>;
+		sound-channel = <0>;
+		aw-cali-mode = "aw_attr";
+		//smartpa-vdd-supply = <&L8C>;
+		status = "okay";
+	};
+	aw882xx_smartpa@32 { // receiver
+		compatible = "awinic,aw882xx_smartpa";
+		reg = <0x32>;
+		reset-gpio = <&tlmm 42 0>;
+		irq-gpio = <&tlmm 50 0x2008>;
+		sound-channel = <1>;
+		aw-cali-mode = "aw_attr";
+		//smartpa-vdd-supply = <&L8C>;
+		status = "okay";
+	};
+
+	tfa98xx_smartpa@34 {
+		compatible = "tfa,tfa98xx";
+		reg = <0x34>;
+		reset-gpio = <&tlmm 15 0>;
+		smartpa-vdd-supply = <&L8C>;
+		irq-gpio = <&tlmm 14 0x2008>;
+		is-primary;
+		status = "ok";
+	};
+
+	tfa98xx_smartpa@36 {
+		compatible = "tfa,tfa98xx";
+		reg = <0x36>;
+		reset-gpio = <&tlmm 42 0>;
+		irq-gpio = <&tlmm 50 0x2008>;
+		status = "ok";
+	};
+};
+
+&qupv3_se10_i2c {
+	aw882xx_smartpa@30 {
+		status = "disabled";
+	};
+	aw882xx_smartpa@32 {
+		status = "disabled";
+	};
+
+	tfa98xx_smartpa@34 {
+		status = "disabled";
+	};
+	tfa98xx_smartpa@36 {
+		status = "disabled";
+	};
+};

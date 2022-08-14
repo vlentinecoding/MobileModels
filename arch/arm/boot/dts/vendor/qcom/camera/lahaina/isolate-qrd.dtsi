@@ -1,0 +1,103 @@
+&led_flash_triple_rear {
+	status = "disable";
+};
+
+&led_flash_triple_rear_aux {
+	status = "disable";
+};
+
+&led_flash_triple_rear_aux2 {
+	status = "disable";
+};
+
+&actuator_triple_tele {
+	status = "disable";
+};
+
+&actuator_triple_wide {
+	status = "disable";
+};
+
+&eeprom_triple_tele {
+	status = "disable";
+};
+
+&eeprom_triple_wide {
+	status = "disable";
+};
+
+&eeprom_tof2 {
+	status = "disable";
+};
+
+&actuator_triple_uw {
+	status = "disable";
+};
+
+&eeprom_triple_uw {
+	status = "disable";
+};
+
+&eeprom_tof1 {
+	status = "disable";
+};
+
+&eeprom_front {
+	status = "disable";
+};
+
+&camera_sensor0 {
+	status = "disable";
+};
+
+&camera_sensor1 {
+	status = "disable";
+};
+
+&camera_sensor3 {
+	status = "disable";
+};
+
+&camera_sensor2 {
+	status = "disable";
+};
+
+&camera_sensor4 {
+	status = "disable";
+};
+
+&camera_sensor5 {
+	status = "disable";
+};
+
+&soc {
+        /delete-node/ led_flash_triple_rear;
+        /delete-node/ led_flash_triple_rear_aux;
+        /delete-node/ led_flash_triple_rear_aux2;
+};
+
+&cam_cci0 {
+        /delete-node/ actuator_triple_tele;
+        /delete-node/ actuator_triple_wide;
+        /delete-node/ eeprom_triple_tele;
+        /delete-node/ eeprom_triple_wide;
+        /delete-node/ eeprom_tof2;
+        /delete-node/ actuator_triple_tele;
+        /delete-node/ actuator_triple_wide;
+        /delete-node/ eeprom_triple_tele;
+        /delete-node/ eeprom_triple_wide;
+        /delete-node/ eeprom_tof2;
+        /delete-node/ qcom,cam-sensor0;
+        /delete-node/ qcom,cam-sensor1;
+        /delete-node/ qcom,cam-sensor3;
+};
+
+&cam_cci0 {
+        /delete-node/ actuator_triple_uw;
+        /delete-node/ eeprom_triple_uw;
+        /delete-node/ eeprom_tof1;
+        /delete-node/ eeprom_front;
+        /delete-node/ qcom,cam-sensor2;
+        /delete-node/ qcom,cam-sensor4;
+        /delete-node/ qcom,cam-sensor5;
+};

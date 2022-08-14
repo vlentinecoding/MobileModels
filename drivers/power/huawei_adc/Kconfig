@@ -1,0 +1,3 @@
+config HONOR_ADC
+	bool "honor adc"
+	default n

@@ -1,0 +1,3 @@
+obj-y += power_nv/
+obj-$(CONFIG_HUAWEI_POWER_MESG_INTERFACE) += power_mesg/
+obj-y += uscp/

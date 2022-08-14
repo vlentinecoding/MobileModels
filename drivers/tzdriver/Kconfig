@@ -1,0 +1,57 @@
+menu "TEE OS"
+
+config TZDRIVER
+	tristate "Secure Execution Communicator driver"
+	default n
+	help
+	  Provides a communication interface between userspace and
+	  TrustZone Operating Environment.
+
+config HISI_SECBOOT_IMG
+	bool "tzdriver split secboot img into modem and ap"
+	default n
+	depends on KERNEL_CLIENT
+	help
+	  Macro defined for splitting modem and ap img
+
+config HISI_SECBOOT_IMG_V2
+	bool "tzdriver split modem and ap for v2"
+	default n
+	depends on KERNEL_CLIENT
+	help
+	  Macro defined for splitting modem and ap img v2
+
+config ASAN_DEBUG
+	bool "hisi ASAN debug version"
+	default n
+	help
+	  Macro defined for ASAN debug version
+
+config TZDRIVER_MODULE
+	bool "tz driver for whole module "
+	default n
+	help
+	  Macro defined for complie it as module
+
+config TZDRIVER_SVM
+	bool "tz driver for htee svm "
+	default n
+	help
+	  Macro defined for htee svm
+
+config TZ_DRIVER_KERNEL4
+	bool "tz driver for kernel 4.x "
+	default n
+	help
+	  Macro defined for linux kernel 4.x
+
+source  "drivers/tzdriver/auth/Kconfig"
+source  "drivers/tzdriver/core/Kconfig"
+source  "drivers/tzdriver/ion/Kconfig"
+source  "drivers/tzdriver/tlogger/Kconfig"
+source  "drivers/tzdriver/tui/Kconfig"
+source  "drivers/tzdriver/ca_antiroot/Kconfig"
+source  "drivers/tzdriver/agent_rpmb/Kconfig"
+
+endmenu
+

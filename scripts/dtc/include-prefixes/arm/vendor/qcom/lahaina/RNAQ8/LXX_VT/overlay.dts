@@ -1,0 +1,49 @@
+/dts-v1/;
+/plugin/;
+
+#include "../common/common.dtsi"
+#include "devkit-lcd.dtsi"
+#include "honor-nfc.dtsi"
+#include "honor-camera.dtsi"
+#include "honor_tp.dtsi"
+
+/ {
+    /* bsp_replace_info @ model = "Honor Technologies, Inc. %product_name%"; */
+    model = "Honor Technologies, Inc. RNA-LXX";
+    compatible = "qcom,lahaina-qrd", "qcom,lahaina", "qcom,qrd";
+    /* bsp_replace_info @ qcom,board-id = <%boardid% 0>; */
+    qcom,board-id = <8371 0>;
+};
+
+&rootparam {
+    /* bsp_replace_info @ qcom,boardid = <%boardid_split%>; */
+    /* auto_key_info @ name: boardid type: uint32 default: 0 */
+    qcom,boardid = <8 3 7 1>;
+    /* bsp_replace_info @ qcom,board_name = "%board_name%"; */
+    qcom,board_name = "RNA_LXX_VT";
+    /* bsp_replace_info @ qcom,product_name = "%product_name%"; */
+    qcom,product_name = "RNA-LXX";
+    /* bsp_replace_info @ hardware_version = "%hardware_version%"; */
+    hardware_version = "TESTBOARDRNA";
+};
+
+&soc {
+    qcom,pcie@1c08000 {
+        compatible = "qcom,pci-msm";
+        status = "disabled";
+    };
+};
+
+&wcd938x_codec {
+    compatible = "qcom,wcd938x-codec";
+    cdc-vdd-mic-bias-supply = <&BOB>;
+    qcom,cdc-vdd-mic-bias-voltage = <3296000 3500000>;
+    qcom,cdc-vdd-mic-bias-current = <30000>;
+};
+
+&S1C {
+    regulator-name = "pm8350c_s1";
+    regulator-min-microvolt = <1800000>;
+    regulator-max-microvolt = <2200000>;
+    qcom,init-voltage = <1880000>;
+};

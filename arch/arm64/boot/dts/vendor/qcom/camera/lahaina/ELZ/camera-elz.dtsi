@@ -1,0 +1,675 @@
+#include <dt-bindings/clock/qcom,camcc-lahaina.h>
+#include "../isolate-qrd.dtsi"
+
+&product_name_camera {
+	product-name = "ELZ_PRO";
+};
+
+&pm8350c_flash {
+	open-short-mask = /bits/ 8 <0xc3>;
+};
+
+&pm8008i_regulator {
+	compatible = "qcom,pm8008-regulator";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	pm8008_en-supply = <&PM8008I_EN>;
+	vdd_l1_l2-supply = <&S12B>;
+	vdd_l3_l4-supply = <&BOB>;
+	vdd_l5-supply = <&BOB>;
+	vdd_l6-supply = <&BOB>;
+	vdd_l7-supply = <&S1C>;
+};
+
+&pm8008i_l1 {
+	regulator-min-microvolt = <1000000>;
+	regulator-max-microvolt = <1200000>;
+	qcom,min-dropout-voltage = <224000>;
+};
+
+&pm8008i_l2 {
+	regulator-min-microvolt = <1000000>;
+	regulator-max-microvolt = <1250000>;
+	qcom,min-dropout-voltage = <150000>;
+};
+
+&pm8008i_l3 {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <3400000>;
+	qcom,min-dropout-voltage = <200000>;
+};
+
+&pm8008i_l4 {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <3400000>;
+	qcom,min-dropout-voltage = <200000>;
+};
+
+&pm8008i_l5 {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <3400000>;
+	qcom,min-dropout-voltage = <70000>;
+};
+
+&pm8008i_l6 {
+	regulator-min-microvolt = <2696000>;
+	regulator-max-microvolt = <2904000>;
+	qcom,min-dropout-voltage = <200000>;
+};
+
+&pm8008i_l7 {
+	regulator-min-microvolt = <1728000>;
+	regulator-max-microvolt = <1800000>;
+	qcom,min-dropout-voltage = <70000>;
+};
+
+&pm8008j_regulator {
+	compatible = "qcom,pm8008-regulator";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	pm8008_en-supply = <&PM8008J_EN>;
+	vdd_l1_l2-supply = <&S12B>;
+	vdd_l3_l4-supply = <&BOB>;
+	vdd_l5-supply = <&S1C>;
+	vdd_l6-supply = <&S1C>;
+	vdd_l7-supply = <&BOB>;
+};
+
+&pm8008j_l1 {
+	regulator-min-microvolt = <944000>;
+	regulator-max-microvolt = <1152000>;
+	qcom,min-dropout-voltage = <100000>;
+	qcom,hpm-min-load = <30000>;
+};
+
+&pm8008j_l2 {
+	regulator-min-microvolt = <944000>;
+	regulator-max-microvolt = <1112000>;
+	qcom,min-dropout-voltage = <225000>;
+	qcom,hpm-min-load = <30000>;
+};
+
+&pm8008j_l3 {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <3400000>;
+	qcom,min-dropout-voltage = <70000>;
+};
+
+&pm8008j_l4 {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <3400000>;
+	qcom,min-dropout-voltage = <0>;
+};
+
+&pm8008j_l5 {
+	regulator-min-microvolt = <1728000>;
+	regulator-max-microvolt = <1800000>;
+	qcom,min-dropout-voltage = <70000>;
+};
+
+&pm8008j_l6 {
+	regulator-min-microvolt = <1728000>;
+	regulator-max-microvolt = <1800000>;
+	qcom,min-dropout-voltage = <70000>;
+};
+
+&pm8008j_l7 {
+	regulator-min-microvolt = <2800000>;
+	regulator-max-microvolt = <3400000>;
+	qcom,min-dropout-voltage = <0>;
+};
+
+&soc {
+	led_flash_rear: qcom,camera-flash@0 {
+		cell-index = <4>;
+		compatible = "qcom,camera-flash";
+		flash-source = <&pm8350c_flash0 &pm8350c_flash1>;
+		torch-source = <&pm8350c_torch0 &pm8350c_torch1>;
+		switch-source = <&pm8350c_switch2>;
+		flash_thermal;
+		status = "ok";
+	};
+	qcom,cam-res-mgr {
+		compatible = "qcom,cam-res-mgr";
+		status = "ok";
+	};
+};
+
+&qupv3_se13_i2c {
+	tof_rx_ldo: cam_buck@60 {
+		compatible = "honor,cam_buck";
+		regulator-name = "cam_buck";
+		reg = <0x60>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		regulator-min-microvolt = <600000>;
+		regulator-max-microvolt = <1300000>;
+		suspend-voltage-selector = <1>;
+		enable-gpio = <&tlmm 97 0>;
+	};
+};
+
+&tlmm {
+	cam_sensor_mclk0_active: cam_sensor_mclk0_active {
+		/* MCLK0 */
+		mux {
+			pins = "gpio100";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio100";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk0_suspend: cam_sensor_mclk0_suspend {
+		/* MCLK0 */
+		mux {
+			pins = "gpio100";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio100";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk1_active: cam_sensor_mclk1_active {
+		/* MCLK1 */
+		mux {
+			pins = "gpio101";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio101";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk1_suspend: cam_sensor_mclk1_suspend {
+		/* MCLK1 */
+		mux {
+			pins = "gpio101";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio101";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk2_active: cam_sensor_mclk2_active {
+		/* MCLK2 */
+		mux {
+			pins = "gpio102";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio102";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk2_suspend: cam_sensor_mclk2_suspend {
+		/* MCLK2 */
+		mux {
+			pins = "gpio102";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio102";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk3_active: cam_sensor_mclk3_active {
+		/* MCLK3 */
+		mux {
+			pins = "gpio103";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio103";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk3_suspend: cam_sensor_mclk3_suspend {
+		/* MCLK3 */
+		mux {
+			pins = "gpio103";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio103";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk4_active: cam_sensor_mclk4_active {
+		/* MCLK4 */
+		mux {
+			pins = "gpio104";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio104";
+			bias-disable; /* No PULL */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk4_suspend: cam_sensor_mclk4_suspend {
+		/* MCLK4 */
+		mux {
+			pins = "gpio104";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio104";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <4>; /* 4 MA */
+		};
+	};
+
+	cam_sensor_mclk5_active: cam_sensor_mclk5_active {
+		/* MCLK5 */
+		mux {
+			pins = "gpio105";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio105";
+			bias-disable; /* No PULL */
+			drive-strength = <6>; /* 6 MA */
+		};
+	};
+
+	cam_sensor_mclk5_suspend: cam_sensor_mclk5_suspend {
+		/* MCLK5 */
+		mux {
+			pins = "gpio105";
+			function = "cam_mclk";
+		};
+
+		config {
+			pins = "gpio105";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <6>; /* 6 MA */
+		};
+	};
+
+	buckboost_active_en: buckboost_active_en {
+		/* xbuckboot en */
+		mux {
+			pins = "gpio179";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio179";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
+	buckboost_suspend_en: buckboost_suspend_en {
+		 /* xbuckboot en */
+		mux {
+			pins = "gpio179";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio179";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	tof_idpin_active_en: tof_idpin_active_en {
+		mux {
+			pins = "gpio180";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio180";
+			bias-pull-up;
+			input-enable;
+		};
+	};
+
+	tof_idpin_suspend_en: tof_idpin_suspend_en {
+		mux {
+			pins = "gpio180";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio180";
+			bias-pull-down;
+			input-enable;
+		};
+	};
+};
+
+&cam_cci0 {
+	eeprom_front_main: qcom,eeprom1 {
+		cell-index = <1>;
+		compatible = "qcom,eeprom";
+		cam_vio-supply = <&pm8008j_l6>;
+		cam_vana-supply = <&pm8008i_l3>;
+		cam_vdig-supply = <&pm8008i_l1>;
+		cam_clk-supply = <&cam_cc_titan_top_gdsc>;
+		cam_v_custom1-supply = <&pm8008i_l7>;
+		regulator-names = "cam_vio", "cam_vana",
+			"cam_vdig","cam_clk", "cam_v_custom1";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 2850000 1100000 0 1800000>;
+		rgltr-max-voltage = <1800000 3000000 1200000 0 1800000>;
+		rgltr-load-current = <5000 68000 805000 0 29000>;
+		gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-0 = <&cam_sensor_mclk5_active
+				&cam_sensor_active_rst5>;
+		pinctrl-1 = <&cam_sensor_mclk5_suspend
+				&cam_sensor_suspend_rst5>;
+		gpios = <&tlmm 105 0>,
+			<&tlmm 115 0>;
+		gpio-reset = <1>;
+		gpio-req-tbl-num = <0 1>;
+		gpio-req-tbl-flags = <1 0>;
+		gpio-req-tbl-label = "CAMIF_MCLK5",
+					"CAM_RESET5";
+		cci-master = <0>;
+		status = "ok";
+		clocks = <&clock_camcc CAM_CC_MCLK5_CLK>;
+		clock-names = "cam_clk";
+		clock-cntl-level = "nominal";
+		clock-rates = <19200000>;
+	};
+
+	eeprom_tof: qcom,eeprom3 {
+		cell-index = <3>;
+		compatible = "qcom,eeprom";
+		cam_vio-supply = <&pm8008j_l5>; // iovdd
+		cam_vdig-supply = <&tof_rx_ldo>; // dvdd
+		cam_vana-supply = <&pm8008i_l4>; // avdd
+		cam_clk-supply = <&cam_cc_titan_top_gdsc>; // lahaina platform config
+		cam_v_custom1-supply = <&pm8008j_l6>; // i2c bus iovdd
+		regulator-names = "cam_vio", "cam_vdig",
+			"cam_clk", "cam_vana", "cam_v_custom1";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 1200000 0 2850000 1800000>; // iovdd, dvdd, clk, avdd
+		rgltr-max-voltage = <1800000 1200000 0 3300000 1800000>;
+		rgltr-load-current = <200000 29000 0 52000 5000>;
+		gpio-no-mux = <0>; // Whether GPIO muxing is enabled
+		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-0 = <&cam_sensor_mclk4_active
+			&cam_sensor_active_rst4>;
+		pinctrl-1 = <&cam_sensor_mclk4_suspend
+			&cam_sensor_suspend_rst4>;
+		gpios = <&tlmm 104 0>, // MCLK GPIO
+			<&tlmm 116 0>; // reset GPIO
+		gpio-reset = <1>;
+		gpio-req-tbl-num = <0 1>;
+		gpio-req-tbl-flags = <1 0>;
+		gpio-req-tbl-label = "CAMIF_MCLK4",
+			"CAM_RESET4";
+		cci-master = <1>;
+		clocks = <&clock_camcc CAM_CC_MCLK4_CLK>;
+		clock-names = "cam_clk";
+		clock-cntl-level = "nominal";
+		clock-rates = <24000000>;
+		status = "ok";
+	};
+
+	qcom,cam-sensor1 {
+		cell-index = <1>;
+		compatible = "qcom,cam-sensor";
+		csiphy-sd-index = <5>;
+		sensor-position-roll = <270>;
+		sensor-position-pitch = <0>;
+		sensor-position-yaw = <0>;
+		eeprom-src = <&eeprom_front_main>;
+		cam_vio-supply = <&pm8008j_l6>;
+		cam_vana-supply = <&pm8008i_l3>;
+		cam_vdig-supply = <&pm8008i_l1>;
+		cam_clk-supply = <&cam_cc_titan_top_gdsc>;
+		cam_v_custom1-supply = <&pm8008i_l7>;
+		regulator-names = "cam_vio", "cam_vana",
+			"cam_vdig","cam_clk", "cam_v_custom1";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 2850000 1100000 0 1800000>;
+		rgltr-max-voltage = <1800000 3000000 1200000 0 1800000>;
+		rgltr-load-current = <5000 68000 805000 0 29000>;
+		gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-0 = <&cam_sensor_mclk5_active
+				&cam_sensor_active_rst5>;
+		pinctrl-1 = <&cam_sensor_mclk5_suspend
+				&cam_sensor_suspend_rst5>;
+		gpios = <&tlmm 105 0>,
+			<&tlmm 115 0>;
+		gpio-reset = <1>;
+		gpio-req-tbl-num = <0 1>;
+		gpio-req-tbl-flags = <1 0>;
+		gpio-req-tbl-label = "CAMIF_MCLK5",
+					"CAM_RESET5";
+		cci-master = <0>;
+		status = "ok";
+		clocks = <&clock_camcc CAM_CC_MCLK5_CLK>;
+		clock-names = "cam_clk";
+		clock-cntl-level = "nominal";
+		clock-rates = <19200000>;
+	};
+
+	qcom,cam-sensor3 {
+		cell-index = <3>;
+		compatible = "qcom,cam-sensor";
+		csiphy-sd-index = <4>; // pair to cisphy4
+		eeprom-src = <&eeprom_tof>;
+		sensor-position-roll = <270>;
+		sensor-position-pitch = <0>;
+		sensor-position-yaw = <0>;
+		cam_vio-supply = <&pm8008j_l5>; // iovdd
+		cam_vdig-supply = <&tof_rx_ldo>; // dvdd
+		cam_vana-supply = <&pm8008i_l4>; // avdd
+		cam_clk-supply = <&cam_cc_titan_top_gdsc>; // lahaina platform config
+		cam_v_custom1-supply = <&pm8008j_l6>; // i2c bus iovdd
+		cam_vana1-supply = <&pm8008j_l7>; // AVCC33, TOF TX
+		cam_v_custom2-supply = <&pm8008j_l4>; // DVCC33, TOF TX
+		regulator-names = "cam_vio", "cam_vdig",
+			"cam_clk", "cam_vana", "cam_v_custom1",
+			"cam_vana1", "cam_v_custom2";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 1200000 0 2850000 1800000 3300000 4000000>; // iovdd, dvdd, clk, avdd
+		rgltr-max-voltage = <1800000 1200000 0 3300000 1800000 3300000 4000000>;
+		rgltr-load-current = <200000 29000 0 52000 5000 200000 200000>;
+		gpio-no-mux = <0>; // Whether GPIO muxing is enabled
+		pinctrl-names = "cam_default", "cam_suspend", "tof_idpin_default", "tof_idpin_suspend";
+		pinctrl-0 = <&cam_sensor_mclk4_active
+			&cam_sensor_active_rst4
+			&buckboost_active_en>;
+		pinctrl-1 = <&cam_sensor_mclk4_suspend
+			&cam_sensor_suspend_rst4
+			&buckboost_suspend_en>;
+		pinctrl-2 = <&tof_idpin_active_en>;
+		pinctrl-3 = <&tof_idpin_suspend_en>;
+		cam-tof-idpin = <&tlmm 180 0>;
+		cam-tof-idpin-state = <0 0 1 1 0 1>;
+		cam-tof-id = <0 1 2>; // TOF tx vscel: vertilite, lumentum, ams
+		gpios = <&tlmm 104 0>, // MCLK GPIO
+			<&tlmm 116 0>, // reset GPIO
+			<&tlmm 179 0>; // LD VDD GPIO
+		gpio-reset = <1>;
+		gpio-custom1 = <2>; // LD vdd GPIO
+		gpio-req-tbl-num = <0 1 2>;
+		gpio-req-tbl-flags = <1 0 0>;
+		gpio-req-tbl-label = "CAMIF_MCLK4",
+			"CAM_RESET4",
+			"CAM_BUCKBOOST_EN";
+		cci-master = <1>;
+		clocks = <&clock_camcc CAM_CC_MCLK4_CLK>;
+		clock-names = "cam_clk";
+		clock-cntl-level = "nominal";
+		clock-rates = <24000000>;
+		status = "ok";
+	};
+};
+
+&cam_cci1 {
+	actuator_back_main: qcom,actuator0 {
+		cell-index = <0>;
+		compatible = "qcom,actuator";
+		cci-master = <0>;
+		cam_vaf-supply = <&pm8008j_l4>;
+		regulator-names = "cam_vaf";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <3300000>;
+		rgltr-max-voltage = <3300000>;
+		rgltr-load-current = <68000>;
+		status = "ok";
+	};
+
+	eeprom_back_main: qcom,eeprom0 {
+		cell-index = <0>;
+		compatible = "qcom,eeprom";
+		cam_vio-supply = <&pm8008j_l5>;
+		cam_vana-supply = <&pm8008i_l5>;
+		cam_vdig-supply = <&pm8008i_l2>;
+		cam_clk-supply = <&cam_cc_titan_top_gdsc>;
+		cam_v_custom1-supply = <&pm8008j_l6>;
+		cam_v_custom2-supply = <&pm8008j_l4>;
+		regulator-names = "cam_vio", "cam_vana",
+			"cam_vdig", "cam_clk", "cam_v_custom1", "cam_v_custom2";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 2850000 1150000 0 1800000 3300000>;
+		rgltr-max-voltage = <1800000 3000000 1200000 0 1800000 3300000>;
+		rgltr-load-current = <5000 68000 805000 0 29000 68000>;
+		gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-0 = <&cam_sensor_mclk1_active
+				&cam_sensor_active_rst0>;
+		pinctrl-1 = <&cam_sensor_mclk1_suspend
+				&cam_sensor_suspend_rst0>;
+		gpios = <&tlmm 101 0>,
+			<&tlmm 17 0>;
+		gpio-reset = <1>;
+		gpio-req-tbl-num = <0 1>;
+		gpio-req-tbl-flags = <1 0>;
+		gpio-req-tbl-label = "CAMIF_MCLK1",
+					"CAM_RESET0";
+		cci-master = <0>;
+		status = "ok";
+		clocks = <&clock_camcc CAM_CC_MCLK1_CLK>;
+		clock-names = "cam_clk";
+		clock-cntl-level = "nominal";
+		clock-rates = <19200000>;
+	};
+
+	qcom,cam-sensor0 {
+		cell-index = <0>;
+		compatible = "qcom,cam-sensor";
+		csiphy-sd-index = <1>;
+		sensor-position-roll = <90>;
+		sensor-position-pitch = <0>;
+		sensor-position-yaw = <180>;
+		eeprom-src = <&eeprom_back_main>;
+		cam_vio-supply = <&pm8008j_l5>;
+		cam_vana-supply = <&pm8008i_l5>;
+		cam_vdig-supply = <&pm8008i_l2>;
+		cam_clk-supply = <&cam_cc_titan_top_gdsc>;
+		cam_v_custom1-supply = <&pm8008j_l6>;
+		cam_v_custom2-supply = <&pm8008j_l4>;
+		regulator-names = "cam_vio", "cam_vana",
+			"cam_vdig", "cam_clk", "cam_v_custom1", "cam_v_custom2";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 2850000 1150000 0 1800000 3300000>;
+		rgltr-max-voltage = <1800000 3000000 1200000 0 1800000 3300000>;
+		rgltr-load-current = <5000 68000 805000 0 29000 68000>;
+		gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-0 = <&cam_sensor_mclk1_active
+				&cam_sensor_active_rst0>;
+		pinctrl-1 = <&cam_sensor_mclk1_suspend
+				&cam_sensor_suspend_rst0>;
+		gpios = <&tlmm 101 0>,
+			<&tlmm 17 0>;
+		gpio-reset = <1>;
+		gpio-req-tbl-num = <0 1>;
+		gpio-req-tbl-flags = <1 0>;
+		gpio-req-tbl-label = "CAMIF_MCLK1",
+					"CAM_RESET0";
+		cci-master = <0>;
+		status = "ok";
+		clocks = <&clock_camcc CAM_CC_MCLK1_CLK>;
+		clock-names = "cam_clk";
+		clock-cntl-level = "nominal";
+		clock-rates = <19200000>;
+	};
+
+    /* back tele */
+	qcom,cam-sensor4 {
+		cell-index = <4>;
+		compatible = "qcom,cam-sensor";
+		csiphy-sd-index = <2>;
+		sensor-position-roll = <90>;
+		sensor-position-pitch = <0>;
+		sensor-position-yaw = <180>;
+		cam_vio-supply = <&pm8008j_l5>; // sensor avdd
+		cam_vana-supply = <&pm8008i_l6>;
+		cam_vdig-supply = <&pm8008j_l2>;
+		cam_clk-supply = <&cam_cc_titan_top_gdsc>;
+		cam_v_custom1-supply = <&pm8008j_l6>; // i2c bus avdd
+		cam_v_custom2-supply = <&pm8008j_l4>;  // ois vdd
+		regulator-names = "cam_vio", "cam_vana",
+			"cam_vdig", "cam_clk", "cam_v_custom1", "cam_v_custom2";
+		rgltr-cntrl-support;
+		rgltr-min-voltage = <1800000 2850000 1104000 0 1800000 3300000>;
+		rgltr-max-voltage = <1800000 3000000 1104000 0 1800000 3300000>;
+		rgltr-load-current = <5000 68000 805000 0 29000 68000>;
+		gpio-no-mux = <0>;
+		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-0 = <&cam_sensor_mclk2_active
+				&cam_sensor_active_rst2>;
+		pinctrl-1 = <&cam_sensor_mclk2_suspend
+				&cam_sensor_suspend_rst2>;
+		gpios = <&tlmm 102 0>,
+			<&tlmm 106 0>;
+		gpio-reset = <1>;
+		gpio-req-tbl-num = <0 1>;
+		gpio-req-tbl-flags = <1 0>;
+		gpio-req-tbl-label = "CAMIF_MCLK2",
+					"CAM_RESET2";
+		cci-master = <1>;
+		status = "ok";
+		clocks = <&clock_camcc CAM_CC_MCLK2_CLK>;
+		clock-names = "cam_clk";
+		clock-cntl-level = "nominal";
+		clock-rates = <24000000>;
+	};
+};

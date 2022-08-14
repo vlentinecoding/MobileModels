@@ -1,0 +1,28 @@
+/dts-v1/;
+/plugin/;
+
+#include "../common/common.dtsi"
+#include "devkit-lcd.dtsi"
+#include "honor-nfc.dtsi"
+#include "honor-camera.dtsi"
+#include "honor-wifi.dtsi"
+
+/ {
+    /* bsp_replace_info @ model = "Honor Technologies, Inc. %product_name%"; */
+    model = "Honor Technologies, Inc. RNA-LXX";
+    compatible = "qcom,yupik-qrd", "qcom,yupik", "qcom,qrd";
+    /* bsp_replace_info @ qcom,board-id = <%boardid% 0>; */
+    qcom,board-id = <8523 0>;
+};
+
+&rootparam {
+    /* bsp_replace_info @ qcom,boardid = <%boardid_split%>; */
+    /* auto_key_info @ name: boardid type: uint32 default: 0 */
+    qcom,boardid = <8 5 2 3>;
+    /* bsp_replace_info @ qcom,board_name = "%board_name%"; */
+    qcom,board_name = "RNA_LXX_V1";
+    /* bsp_replace_info @ qcom,product_name = "%product_name%"; */
+    qcom,product_name = "RNA-LXX";
+    /* bsp_replace_info @ hardware_version = "%hardware_version%"; */
+    hardware_version = "RNA-LXX_V1";
+};

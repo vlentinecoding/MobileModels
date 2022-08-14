@@ -1,0 +1,7 @@
+
+&reserved_memory {
+    removed_region@d8800000 {
+        no-map;
+        reg = <0x0 0xd8800000 0x0 0x08800000>;
+    };
+};

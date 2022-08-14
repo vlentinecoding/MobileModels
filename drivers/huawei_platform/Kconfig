@@ -1,0 +1,42 @@
+config HUAWEI_DRIVERS
+	bool "huawei drivers"
+	default n
+	help
+	  Say Y here if you want to build the huawei drivers.
+	  If unsure, say N here.
+
+config HUAWEI_TOUCH_SCREEN
+	bool "huawei touch screen driver"
+	default n
+	help
+	  Say Y here if you have any touch device connected to your system and want
+	  it to be available to applications.
+	  Say N here if you have no touch device in your system.If unsure, say Y.
+	  To compile this driver as a module, choose M here: the  module will be called input.
+
+config HUAWEI_MSS_AUTO_CHANGE
+	bool "Huawei MSS auto change undecoupled function support"
+	default n
+
+config HONOR_POWER
+	bool "honor power"
+	default n
+
+config HONOR_USB
+	bool "honor usb"
+	default n
+
+config HUAWEI_PLATFORM
+	bool "huawei platform"
+	default n
+
+config HONOR_HWPOWER
+	bool "honor hwpower"
+	default n
+
+source "drivers/huawei_platform/touchscreen/Kconfig"
+source "drivers/huawei_platform/ioinfo/Kconfig"
+source "drivers/huawei_platform/usb/Kconfig"
+source "drivers/huawei_platform/power/Kconfig"
+source "drivers/huawei_platform/card_tray/Kconfig"
+source "drivers/huawei_platform/hihonor_oem_glink/Kconfig"

@@ -1,0 +1,10 @@
+
+&deviceboxID {
+    hkadc_min_voltage = <850>;
+    hkadc_mid_voltage = <1080>;
+    hkadc_max_voltage = <1290>;
+};
+
+&huawei_audio_info {
+    product_identifier = "nthg";
+};

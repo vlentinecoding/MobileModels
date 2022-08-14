@@ -1,0 +1,21 @@
+config SENSORS_DAX
+        tristate "AMS-TAOS DAX"
+        depends on I2C
+        default y
+        help
+          If you say yes here you get support for the ams-taos dax sensor
+
+config SENSORS_3408
+        tristate "AMS-TCS 3408"
+        depends on I2C
+        default y
+        help
+          If you say yes here you get support for the ams-tcs 3408 sensor
+
+config SENSORS_27006
+        tristate "ROHM BU27006"
+        depends on I2C
+        default y
+        help
+          If you say yes here you get support for the rohm bu27006 sensor
+

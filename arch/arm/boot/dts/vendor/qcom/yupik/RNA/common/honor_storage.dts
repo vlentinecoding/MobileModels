@@ -1,0 +1,4 @@
+&ufshc_mem {
+        limit-tx-hs-gear = <3>;
+        limit-rx-hs-gear = <3>;
+};

@@ -1,0 +1,16 @@
+&qupv3_se3_i2c {
+	qcom,clk-freq-out = <100000>; /* if bq27z561_fg is used, i2c clock must be 100k(100000) */
+	rt9426_battery@55{
+		status = "disabled";
+	};
+
+	bq27z561_fg@55 {
+		status = "ok";
+	};
+};
+
+&multi_btb_temp {
+	sensor-names =
+		"bq_battery", "comp_para1",
+		"bk_battery", "comp_para";
+};

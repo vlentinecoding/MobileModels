@@ -1,0 +1,120 @@
+&huawei_audio_info {
+    compatible = "hw,hw_audio_info";
+    product_identifier = "elz";
+    builtin-primary-mic-exist;
+    builtin-second-mic-exist;
+    hand_held_dual_mic_strategy;
+    loud_speaker_dual_mic_strategy;
+    smartpa-num = "2";
+    voice_vol_level = "10";
+    status = "ok";
+    hardware_info {
+        mic_num = "3";
+        hostless_id_info {
+            hostless_id_reset = "true";
+            spk_rx_hostless_id = "40";
+            earpiece_rx_hostless_id = "30";
+            headset_rx_hostless_id = "30";
+            builtin_mic_tx_hostless_id = "31";
+            hsmic_tx_hostless_id = "39";
+        };
+    };
+};
+
+&lahaina_snd {
+    qcom,audio-routing =
+        "AMIC1", "Analog Mic1",
+        "Analog Mic1", "MIC BIAS1",
+        "AMIC2", "Analog Mic2",
+        "Analog Mic2", "MIC BIAS2",
+        "AMIC3", "Analog Mic3",
+        "Analog Mic3", "MIC BIAS3",
+        "AMIC4", "Analog Mic4",
+        "Analog Mic4", "MIC BIAS3",
+        "AMIC5", "Analog Mic5",
+        "Analog Mic5", "MIC BIAS4",
+        "TX DMIC0", "Digital Mic0",
+        "Digital Mic0", "MIC BIAS1",
+        "TX DMIC1", "Digital Mic1",
+        "Digital Mic1", "MIC BIAS1",
+        "TX DMIC2", "Digital Mic2",
+        "Digital Mic2", "MIC BIAS3",
+        "TX DMIC3", "Digital Mic3",
+        "Digital Mic3", "MIC BIAS3",
+        "TX DMIC4", "Digital Mic4",
+        "Digital Mic4", "MIC BIAS4",
+        "TX DMIC5", "Digital Mic5",
+        "Digital Mic5", "MIC BIAS4",
+        "IN1_HPHL", "HPHL_OUT",
+        "IN2_HPHR", "HPHR_OUT",
+        "IN3_AUX", "AUX_OUT",
+        "HAP_IN", "PCM_OUT",
+        "RX_TX DEC0_INP", "TX DEC0 MUX",
+        "RX_TX DEC1_INP", "TX DEC1 MUX",
+        "RX_TX DEC2_INP", "TX DEC2 MUX",
+        "RX_TX DEC3_INP", "TX DEC3 MUX",
+        "TX SWR_INPUT", "WCD_TX_OUTPUT",
+        "VA SWR_INPUT", "VA_SWR_CLK",
+        "VA SWR_INPUT", "WCD_TX_OUTPUT",
+        "VA_AIF1 CAP", "VA_SWR_CLK",
+        "VA_AIF2 CAP", "VA_SWR_CLK",
+        "VA_AIF3 CAP", "VA_SWR_CLK",
+        "VA DMIC0", "Digital Mic0",
+        "VA DMIC1", "Digital Mic1",
+        "VA DMIC2", "Digital Mic2",
+        "VA DMIC3", "Digital Mic3",
+        "VA DMIC4", "Digital Mic4",
+        "VA DMIC5", "Digital Mic5",
+        "Digital Mic0", "VA MIC BIAS1",
+        "Digital Mic1", "VA MIC BIAS1",
+        "Digital Mic2", "VA MIC BIAS3",
+        "Digital Mic3", "VA MIC BIAS3",
+        "Digital Mic4", "VA MIC BIAS4",
+        "Digital Mic5", "VA MIC BIAS4";
+    asoc-codec  = <&stub_codec>, <&bolero>,
+        <&wcd938x_codec>, <&swr_haptics>,
+        <&swr_dmic_04>, <&swr_dmic_03>,
+        <&swr_dmic_02>, <&swr_dmic_01>,
+        <&ext_disp_audio_codec>;
+    asoc-codec-names = "msm-stub-codec.1", "bolero_codec",
+        "wcd938x_codec", "swr-haptics",
+        "swr-dmic.04", "swr-dmic.03",
+        "swr-dmic.02", "swr-dmic.01",
+        "msm-ext-disp-audio-codec-rx";
+    qcom,wsa-max-devs = <0>;
+    qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
+};
+
+&q6core {
+    cdc_quin_mi2s_gpios: msm_cdc_pinctrl_quin {
+        compatible = "qcom,msm-cdc-pinctrl";
+        pinctrl-names = "aud_active", "aud_sleep";
+        pinctrl-0 = <&lpi_i2s1_sck_active &lpi_i2s1_ws_active &lpi_i2s1_sd0_active &lpi_i2s1_sd1_active>;
+        pinctrl-1 = <&lpi_i2s1_sck_sleep &lpi_i2s1_ws_sleep &lpi_i2s1_sd0_sleep &lpi_i2s1_sd1_sleep>;
+        qcom,lpi-gpios;
+    };
+};
+
+&qupv3_se2_i2c {
+    status = "ok";
+    aw882xx_smartpa@30 { // speaker
+        compatible = "awinic,aw882xx_smartpa";
+        reg = <0x30>;
+        reset-gpio = <&tlmm 15 0>;
+        irq-gpio = <&tlmm 14 0x2008>;
+        sound-channel = <0>;
+        aw-cali-mode = "aw_attr";
+        //smartpa-vdd-supply = <&L8C>;
+        status = "okay";
+    };
+    aw882xx_smartpa@32 { // receiver
+        compatible = "awinic,aw882xx_smartpa";
+        reg = <0x32>;
+        reset-gpio = <&tlmm 42 0>;
+        irq-gpio = <&tlmm 50 0x2008>;
+        sound-channel = <1>;
+        aw-cali-mode = "aw_attr";
+        //smartpa-vdd-supply = <&L8C>;
+        status = "okay";
+    };
+};

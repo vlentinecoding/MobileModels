@@ -1,0 +1,35 @@
+huawei_trickle_charge {
+	Ic = <1>;
+	TimeOuts = <900>;
+
+	LedOnMs = <500>;
+	LedOffMs = <2000>;
+
+	WatchdogMs = <80000>;
+
+	SdpIinMa = <500>;
+	DcpIinMa = <1500>;
+	SdpIchgMa = <500>;
+	DcpIchgMa = <2000>;
+	DpmThMv = <0>;
+
+	BootupVoltMv = <3450>;
+	BootupVoltNoChg = <3500>;
+
+	LedControlMode = <2>;
+
+	LedRedExist = <0>;
+	LedGreenExist = <0>;
+	LedBlueExist = <0>;
+	LedRedInitSts = <0>;
+	LedGreenInitSts = <0>;
+	LedBlueInitSts = <0>;
+	LedRedGpio = <-1>;
+	LedGreenGpio = <-1>;
+	LedBlueGpio = <-1>;
+
+	LedOnVal = <0x2>;
+	LedOffVal = <0x0>;
+
+	LedGpioFunc = <-1>;
+};

@@ -1,0 +1,5 @@
+config HONOR_SPI_IR
+        tristate "Support for spi ir device"
+        default y
+        help
+          Say Y to enable support spi ir device

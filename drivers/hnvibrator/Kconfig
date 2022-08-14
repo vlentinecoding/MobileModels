@@ -1,0 +1,6 @@
+config HN_HAPTICS_WRAPPER
+	tristate "wrapper for qcom-hv-haptics"
+	depends on INPUT_QCOM_HV_HAPTICS
+	default n
+	help
+	  Wrapper for qcom-hv-haptics, to support legacy haptics pattern

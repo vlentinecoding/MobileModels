@@ -1,0 +1,1 @@
+obj-$(CONFIG_HN_HAPTICS_WRAPPER) += hn_haptics_wrapper.o

@@ -1,0 +1,9 @@
+&soc {
+	antenna_board_detect: antenna_board_detect {
+		compatible = "huawei,antenna_board_detect";
+		is-adc-mode;
+		qcom,antenna_adc-vadc = <&hw_antenna_adc>;
+		switch-mode = <0>;
+		antenna_board_match_range = <200 1900>;
+	};
+};
