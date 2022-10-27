@@ -1,0 +1,6 @@
+source "drivers/huawei_platform/power/adsp/dts/Kconfig"
+source "drivers/huawei_platform/power/adsp/direct_charger/Kconfig"
+source "drivers/huawei_platform/power/adsp/battery/Kconfig"
+source "drivers/huawei_platform/power/adsp/charger/Kconfig"
+source "drivers/huawei_platform/power/adsp/event/Kconfig"
+source "drivers/huawei_platform/power/adsp/usb/Kconfig"

@@ -1,0 +1,3 @@
+#include "lahaina-sde-display.dtsi"
+&sde_dsi {
+};

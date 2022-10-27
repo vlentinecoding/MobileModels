@@ -1,0 +1,20 @@
+
+&usb_analog_hs {
+    compatible = "honor,usb_analog_hs";
+    status = "disabled";
+
+    qcom,dp-aux-switch = <&fsa4480>;
+};
+
+&usb_analog_hs_mos {
+    compatible = "honor,usb_analog_hs_mos";
+    status = "disabled";
+};
+
+&fsa4480 {
+    status = "disabled";
+};
+
+&sde_dp {
+    qcom,dp-aux-switch = <&usb_analog_hs>;
+};

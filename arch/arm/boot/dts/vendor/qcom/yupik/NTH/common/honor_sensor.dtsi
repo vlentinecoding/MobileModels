@@ -1,0 +1,9 @@
+&honor_sensor_info {
+    product_name = "nth";
+    status = "ok";
+};
+
+&wakeupsensor {
+    compatible = "honor,sensorevent";
+    status = "ok";
+};

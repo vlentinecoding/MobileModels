@@ -1,0 +1,263 @@
+/*
+ * wireless_tx_pwr_src.c
+ *
+ * power source for wireless reverse charging
+ *
+ * Copyright (c) 2020-2020 Huawei Technologies Co., Ltd.
+ *
+ * This software is licensed under the terms of the GNU General Public
+ * License version 2, as published by the Free Software Foundation, and
+ * may be copied, distributed, and modified under those terms.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ */
+
+#include <linux/kernel.h>
+#include <linux/delay.h>
+#include <log/hw_log.h>
+#include <chipset_common/hwpower/boost_5v.h>
+#include <chipset_common/hwpower/charge_pump.h>
+#include <huawei_platform/power/direct_charger/direct_charger.h>
+#include <chipset_common/hwpower/direct_charge/direct_charge_ic_manager.h>
+#include <huawei_platform/power/wireless/wireless_tx_pwr_src.h>
+#include <chipset_common/hwpower/wireless_charge/wireless_power_supply.h>
+#include <huawei_platform/power/wireless/wireless_transmitter.h>
+
+#define HWLOG_TAG wireless_tx_pwr_src
+HWLOG_REGIST();
+
+static struct {
+	enum wltx_pwr_src src;
+	const char *name;
+} const g_pwr_src[] = {
+	{ PWR_SRC_NULL, "PWR_SRC_NULL" },
+	{ PWR_SRC_VBUS, "PWR_SRC_VBUS" },
+	{ PWR_SRC_OTG, "PWR_SRC_OTG" },
+	{ PWR_SRC_5VBST, "PWR_SRC_5VBST" },
+	{ PWR_SRC_SPBST, "PWR_SRC_SPBST" },
+	{ PWR_SRC_VBUS_CP, "PWR_SRC_VBUS_CP" },
+	{ PWR_SRC_OTG_CP, "PWR_SRC_OTG_CP" },
+	{ PWR_SRC_BP2CP, "PWR_SRC_BP2CP" },
+	{ PWR_SRC_PMU, "PWR_SRC_PMU"},
+	{ PWR_SRC_VBUS_CP_7P5, "PWR_SRC_VBUS_CP_7P5"},
+	{ PWR_SRC_NA, "PWR_SRC_NA" },
+};
+
+const char *wltx_get_pwr_src_name(enum wltx_pwr_src src)
+{
+	int i;
+
+	for (i = 0; i < ARRAY_SIZE(g_pwr_src); i++) {
+		if (src == g_pwr_src[i].src)
+			return g_pwr_src[i].name;
+	}
+	return "NA";
+}
+
+static enum wltx_pwr_src wltx_set_vbus_output(bool enable)
+{
+	return PWR_SRC_NULL;
+}
+
+static enum wltx_pwr_src wltx_set_otg_output(bool enable)
+{
+	return PWR_SRC_NULL;
+}
+
+static enum wltx_pwr_src wltx_set_5vbst_output(bool enable)
+{
+	wlps_control(WLPS_TX_SW, enable ? WLPS_CTRL_ON : WLPS_CTRL_OFF);
+	usleep_range(1000, 1050); /* 1ms */
+	boost_5v_enable(enable, BOOST_CTRL_WLTX);
+	return enable ? PWR_SRC_5VBST : PWR_SRC_NULL;
+}
+
+static enum wltx_pwr_src wltx_set_spbst_output(bool enable)
+{
+	wlps_control(WLPS_TX_PWR_SW, enable ? WLPS_CTRL_ON : WLPS_CTRL_OFF);
+	if (enable)
+		(void)charge_pump_reverse_chip_init(CP_TYPE_MAIN);
+	return enable ? PWR_SRC_SPBST : PWR_SRC_NULL;
+}
+
+static enum wltx_pwr_src wltx_set_bp2cp_output(bool enable)
+{
+	if (enable)
+		(void)charge_pump_set_reverse_bp2cp_mode(CP_TYPE_MAIN);
+
+	return enable ? PWR_SRC_BP2CP : PWR_SRC_NULL;
+}
+
+static enum wltx_pwr_src wltx_set_pmu_output(bool enable)
+{
+	if (enable) {
+		wlps_control(WLPS_TX_PMU_SW, enable ? WLPS_CTRL_ON : WLPS_CTRL_OFF);
+		usleep_range(1000, 1050); /* 1ms */
+		(void)hihonor_charger_glink_enable_wlc_src(enable);
+		(void)hihonor_charger_glink_enable_identify_insert(enable);
+		(void)charge_pump_reverse_chip_init(CP_TYPE_MAIN);
+	} else {
+		(void)hihonor_charger_glink_enable_wlc_src(enable);
+		(void)hihonor_charger_glink_enable_identify_insert(enable);
+		wlps_control(WLPS_TX_PMU_SW, enable ? WLPS_CTRL_ON : WLPS_CTRL_OFF);
+		usleep_range(1000, 1050); /* 1ms */
+	}
+	return enable ? PWR_SRC_PMU : PWR_SRC_NULL;
+}
+
+static enum wltx_pwr_src wltx_set_adaptor_output(int vset, int iset)
+{
+	int i;
+	int adp_mode;
+	int vbus;
+
+	/* delay 60*50 = 3000ms for direct charger check finish */
+	for (i = 0; i < 60; i++) {
+		if (!direct_charge_in_mode_check())
+			break;
+		if (wltx_msleep(50))
+			return PWR_SRC_NULL;
+	}
+	adp_mode = direct_charge_detect_adapter_support_mode();
+	hwlog_info("%s: adp_mode = %d\n", __func__, adp_mode);
+	if ((adp_mode & LVC_MODE) != 1) {
+		hwlog_err("set_adaptor_output: undefined adapter mode\n");
+		return PWR_SRC_5VBST;
+	}
+	if (adaptor_cfg_for_wltx_vbus(vset, iset)) {
+		hwlog_info("[set_adaptor_output] cfg vbus failed\n");
+		return PWR_SRC_NULL;
+	}
+
+	/* delay 50*5 = 250ms for vbus output, typically 50-100ms */
+	for (i = 0; i < 5; i++) {
+		wltx_msleep(50);
+		charger_get_output_voltage(&vbus);
+		hwlog_info("[set_vbus_output] vbus=%dmV\n", vbus);
+		if ((vbus >= WLTX_SC_ADAP_VSET - WLTX_SC_ADAP_V_OFFSET) &&
+			(vbus < WLTX_SC_ADAP_VSET + WLTX_SC_ADAP_V_OFFSET)) {
+			wlps_control(WLPS_RX_SW, WLPS_CTRL_ON);
+			charge_pump_chip_enable(CP_TYPE_MAIN, true);
+			return PWR_SRC_VBUS;
+		}
+	}
+	return PWR_SRC_NULL;
+}
+
+static enum wltx_pwr_src wltx_reset_adaptor_output(void)
+{
+	return PWR_SRC_NULL;
+}
+
+static enum wltx_pwr_src wltx_set_vbus_cp_output(bool enable)
+{
+	int ret;
+	enum wltx_pwr_src src;
+	struct wireless_tx_device_info *di = wltx_get_dev_info();
+
+	if (!di)
+		return PWR_SRC_NULL;
+
+	if (!enable)
+		return wltx_reset_adaptor_output();
+
+	if (di->ps_need_ext_pwr)
+		wlps_control(WLPS_RX_EXT_PWR, WLPS_CTRL_ON);
+
+	src = wltx_set_adaptor_output(WLTX_SC_ADAP_VSET, WLTX_SC_ADAP_ISET);
+	if (src == PWR_SRC_5VBST)
+		goto swithsrc_5vboost;
+
+	if (src != PWR_SRC_VBUS)
+		goto fail;
+
+	ret = charge_pump_reverse_cp_chip_init(CP_TYPE_MAIN);
+	if (ret)
+		hwlog_err("set_vbus_cp_output: set cp failed\n");
+	else
+		src = PWR_SRC_VBUS_CP;
+
+fail:
+	if (di->ps_need_ext_pwr)
+		wlps_control(WLPS_RX_EXT_PWR, WLPS_CTRL_OFF);
+	return src;
+
+swithsrc_5vboost:
+	hwlog_err("switch 5vboost\n");
+	return wltx_set_5vbst_output(enable);
+
+}
+
+static enum wltx_pwr_src wltx_set_otg_cp_output(bool enable)
+{
+	int ret;
+	enum wltx_pwr_src src;
+	struct wireless_tx_device_info *di = wltx_get_dev_info();
+
+	if (!di)
+		return PWR_SRC_NULL;
+
+	if (!enable)
+		return wltx_set_otg_output(false);
+
+	if (di->ps_need_ext_pwr)
+		wlps_control(WLPS_RX_EXT_PWR, WLPS_CTRL_ON);
+
+	src = wltx_set_otg_output(true);
+	if (src != PWR_SRC_OTG)
+		goto fail;
+
+	ret = charge_pump_reverse_cp_chip_init(CP_TYPE_MAIN);
+	if (ret)
+		hwlog_err("set_otg_cp_output: set cp failed\n");
+	else
+		src = PWR_SRC_OTG_CP;
+
+fail:
+	if (di->ps_need_ext_pwr)
+		wlps_control(WLPS_RX_EXT_PWR, WLPS_CTRL_OFF);
+	return src;
+}
+
+enum wltx_pwr_src wltx_set_pwr_src_output(bool enable, enum wltx_pwr_src src)
+{
+	hwlog_info("[set_pwr_src_output] src:%s\n", wltx_get_pwr_src_name(src));
+	switch (src) {
+	case PWR_SRC_VBUS:
+		return wltx_set_vbus_output(enable);
+	case PWR_SRC_OTG:
+		return wltx_set_otg_output(enable);
+	case PWR_SRC_5VBST:
+		return wltx_set_5vbst_output(enable);
+	case PWR_SRC_SPBST:
+		return wltx_set_spbst_output(enable);
+	case PWR_SRC_VBUS_CP:
+		return wltx_set_vbus_cp_output(enable);
+	case PWR_SRC_OTG_CP:
+		return wltx_set_otg_cp_output(enable);
+	case PWR_SRC_BP2CP:
+		return wltx_set_bp2cp_output(enable);
+	case PWR_SRC_PMU:
+		return wltx_set_pmu_output(enable);
+	case PWR_SRC_VBUS_CP_7P5:
+		return wltx_set_vbus_cp_output(enable);
+	case PWR_SRC_NULL:
+		return PWR_SRC_NULL;
+	default:
+		return PWR_SRC_NA;
+	}
+}
+
+enum wltx_pwr_src wltx_get_cur_pwr_src(void)
+{
+	struct wireless_tx_device_info *di = wltx_get_dev_info();
+
+	if (!di)
+		return PWR_SRC_NA;
+
+	return di->cur_pwr_src;
+}

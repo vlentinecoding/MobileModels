@@ -1,0 +1,201 @@
+&tlmm {
+	bq25970_main_irq_pins_default {
+		mux {
+			pins = "gpio125";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio125";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+
+	rt9759_main_irq_pins_default {
+		mux {
+			pins = "gpio125";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio125";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+
+	rt9426_irq_pins_default {
+		mux {
+			pins = "gpio123";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio123";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+
+	bq27z561_irq_pins_default {
+		mux {
+			pins = "gpio123";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio123";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+
+	bq25970_aux_irq_pins_default {
+		mux {
+			pins = "gpio121";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio121";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+
+	rt9759_aux_irq_pins_default {
+		mux {
+			pins = "gpio121";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio121";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+
+	fsa9685_irq_pins_default {                              //no find, 9685->9688
+		mux {
+			pins = "gpio127";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio127";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+	battct_swi_pins_default {
+		mux {
+			pins = "gpio83";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio83";
+			drive-strength = <2>;
+			input-enable;
+		};
+	};
+	battct_id_pins_default {
+		mux {
+			pins = "gpio108";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio108";
+			drive-strength = <2>;
+			bias-disabled;
+			output-high;
+		};
+	};
+	cw2217_irq_pins_default {
+		mux {
+			pins = "gpio123";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio123";
+			drive-strength = <2>;
+			bias-pull-up;
+		};
+	};
+};
+
+&qupv3_se0_i2c {
+	qcom,clk-freq-out = <400000>; /* if bq27z561_fg is used, i2c clock must be 100k(100000) */
+	status = "ok";
+	bq25970@65 {
+		status = "disabled";
+	};
+
+	bq25970@66 {
+		status = "disabled";
+	};
+	rt9759@65 {
+		gpio_int = <&tlmm 121 0>;
+		status = "ok";
+	};
+	rt9759@66 {
+		status = "disabled";
+	};
+};
+
+&qupv3_se6_i2c {
+	status = "ok";
+	bq25970@65 {
+		status = "disabled";
+	};
+	bq25970@66 {
+		status = "disabled";
+	};
+	fairchild_fsa9685@25 {
+		fairchild_fsa9685,gpio-intb = <&tlmm 127 0>;
+		status = "ok";
+	};
+	rt9759@65 {
+		gpio_int = <&tlmm 125 0>;
+		status = "ok";
+	};
+	rt9759@66 {
+		status = "disabled";
+	};
+};
+
+&qupv3_se9_i2c {
+	status = "ok";
+	rt9426_battery@55{
+		rt9426,gpio-intb = <&tlmm 123 0x0>;
+		status = "ok";
+	};
+
+	bi27z561_fg@55 {
+		status = "disabled";
+	};
+
+	cw2217_fg@65 {
+		status = "disabled";
+	};
+};
+&qupv3_se13_i2c {
+	status = "ok";
+	fairchild_fsa9685@25 {
+		compatible = "huawei,fairchild_fsa9685";
+		reg = <0x25>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&fsa9685_irq_pins_default>;
+		fairchild_fsa9685,gpio-intb = <&tlmm 127 0>;
+		usbid-enable = <0>;
+		fcp_support = <1>;
+		scp_support = <1>;
+		mhl_detect_disable = <1>;
+		need_other_bc12 = <0>;
+		ignore_force_ac = <1>;
+		/* for rt8979 */
+		interrupt-names = "vbus_change", "device_change", "detach",
+		              "attach";
+		/* auto_switch; */
+		scp;
+		dcd;
+		dcd_timeout = <600>;  /* ms */
+		intb_watchdog = <1000>;  /* ms */
+		ovp_sel = <14500000>;  /* uV */
+		status = "disabled";
+	};
+};

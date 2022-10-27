@@ -1,0 +1,36 @@
+&qupv3_se3_i2c {
+	rt9426_battery@55{
+		status = "disabled";
+	};
+
+	rt9426a_fg@55 {
+		status = "ok";
+	};
+};
+
+&huawei_batt_info {
+	status = "ok";
+	shield_ct_sign = <3>;
+	battery_checker@0 {
+		matchable = <&sle95250>;
+		status = "ok";
+	};
+};
+
+&pmk8350_vadc {
+        pm8350b_battery_id {
+                reg = <PM8350B_ADC7_AMUX_THM2_100K_PU>;
+                label = "pm8350b_battery_id";
+                qcom,ratiometric;
+                qcom,hw-settle-time = <200>;
+                qcom,pre-scaling = <1 1>;
+        };
+};
+
+&battery_model {
+	io-channels = <&pmk8350_vadc PM8350B_ADC7_AMUX_THM2_100K_PU>;
+	io-channel-names = "batt-id";
+	support_iio = <1>;
+	iio_read_raw = <1>;
+	status = "ok";
+};

@@ -1,0 +1,339 @@
+#include "../../common/usb_analog_hs.dtsi"
+
+&huawei_audio_info {
+    compatible = "hw,hw_audio_info";
+    product_identifier = "tna";
+    builtin-primary-mic-exist;
+    builtin-second-mic-exist;
+    hand_held_dual_mic_strategy;
+    loud_speaker_dual_mic_strategy;
+    load_firmware_by_product_name;
+    smartpa_num = "2";
+    smartpa_mi2s_rx = "QUIN_MI2S_RX";
+    smartpa_mi2s_tx = "QUIN_MI2S_TX";
+    voice_vol_level = "10";
+    support_zero_volume = "true";
+    status = "ok";
+    hardware_info {
+        record_algo_enable = "true";
+        audio_zoom_enable = "true";
+        mic_num = "3";
+        mic_type = "0007"; /* 0001 sub mic   0002 main mic   0004 sub mic2   0008 main mic2 */
+        hostless_id_info {
+            hostless_id_reset = "true";
+            spk_rx_hostless_id = "45";
+            earpiece_rx_hostless_id = "30";
+            headset_rx_hostless_id = "30";
+            builtin_mic_tx_hostless_id = "31";
+            hsmic_tx_hostless_id = "47";
+        };
+    };
+
+    audio_capability {
+        /*
+         * sound trigger feature.
+         * false: this product doesn't support soundtrigger feature.
+         * 2.0: this product supports the twice wakeup feature.
+         */
+        soundtrigger_version = "2.0";
+        soundtrigger_enhance_enable = "true";
+        soundtrigger_mic_info = "3";
+        /*
+         * bit0: node 900 optimization,  1:enab1e
+         * bit1:
+         * 0: e2e disable
+         * 1: e2e enable, must use hifi_6405_virtual_btn_devkit.img
+         */
+        soundtrigger_kws1_feature = "2";
+        /*
+         * use hisilicon wakeup engine.
+         * true: use hisilicon wakeup engine.
+         * false: DO NOT use hisilicon wakeup engine.
+         */
+        wakeup_hisiengine = "true";
+    };
+};
+
+&rec_audio_hw_config {
+    multi_mic_enable = "true";
+    bl_channel = "1";
+    br_channel = "3";
+    back_channel = "2";
+    top_channel = "0";
+    product_name = "tna";
+    audio_capability {
+        backmic_record_enable = "true";
+    };
+};
+
+&swr_haptics {
+    status = "disabled";
+};
+
+&wcd938x_rx_slave {
+    status = "disabled";
+};
+
+&wcd938x_tx_slave {
+    status = "disabled";
+};
+
+&wcd938x_codec {
+    status = "disabled";
+};
+
+&wcd937x_codec {
+    status = "okay";
+};
+
+&wcd937x_rx_slave {
+    status = "okay";
+};
+
+&wcd937x_tx_slave {
+    status = "okay";
+};
+
+&usb_analog_hs {
+    status = "ok";
+};
+
+&usb_analog_hs_mos {
+    status = "ok";
+};
+
+&wsa_spkr_en1 {
+    status = "disabled";
+};
+
+&wsa_spkr_en2 {
+    status = "disabled";
+};
+
+&bolero {
+    qcom,num-macros = <3>;
+};
+
+&wsa_macro {
+    status = "disabled";
+};
+
+&yupik_snd {
+    qcom,model = "lahaina-yupikqrd-snd-card";
+    qcom,ext-disp-audio-rx = <0>;
+    qcom,audio-routing =
+        "AMIC1", "Analog Mic1",
+        "Analog Mic1", "MIC BIAS1",
+        "AMIC2", "Analog Mic2",
+        "Analog Mic2", "MIC BIAS2",
+        "AMIC3", "Analog Mic3",
+        "Analog Mic3", "MIC BIAS3",
+        "AMIC4", "Analog Mic4",
+        "Analog Mic4", "MIC BIAS1",
+        "TX DMIC0", "Digital Mic0",
+        "TX DMIC0", "MIC BIAS3",
+        "TX DMIC1", "Digital Mic1",
+        "TX DMIC1", "MIC BIAS3",
+        "TX DMIC2", "Digital Mic2",
+        "TX DMIC2", "MIC BIAS1",
+        "TX DMIC3", "Digital Mic3",
+        "TX DMIC3", "MIC BIAS1",
+        "TX DMIC4", "Digital Mic4",
+        "TX DMIC4", "MIC BIAS1",
+        "TX DMIC5", "Digital Mic5",
+        "TX DMIC5", "MIC BIAS1",
+        "IN1_HPHL", "HPHL_OUT",
+        "IN2_HPHR", "HPHR_OUT",
+        "IN3_AUX", "AUX_OUT",
+        "RX_TX DEC0_INP", "TX DEC0 MUX",
+        "RX_TX DEC1_INP", "TX DEC1 MUX",
+        "RX_TX DEC2_INP", "TX DEC2 MUX",
+        "RX_TX DEC3_INP", "TX DEC3 MUX",
+        "TX SWR_INPUT", "WCD_TX_OUTPUT",
+        "VA SWR_INPUT", "VA_SWR_CLK",
+        "VA SWR_INPUT", "WCD_TX_OUTPUT",
+        "VA_AIF1 CAP", "VA_SWR_CLK",
+        "VA_AIF2 CAP", "VA_SWR_CLK",
+        "VA_AIF3 CAP", "VA_SWR_CLK",
+        "VA DMIC0", "Digital Mic0",
+        "VA DMIC1", "Digital Mic1",
+        "VA DMIC2", "Digital Mic2",
+        "VA DMIC3", "Digital Mic3",
+        "VA DMIC4", "Digital Mic4",
+        "VA DMIC5", "Digital Mic5",
+        "VA DMIC0", "VA MIC BIAS3",
+        "VA DMIC1", "VA MIC BIAS3",
+        "VA DMIC2", "VA MIC BIAS1",
+        "VA DMIC3", "VA MIC BIAS1",
+        "VA DMIC4", "VA MIC BIAS1",
+        "VA DMIC5", "VA MIC BIAS1";
+    qcom,swr-dmic-max-devs = <0>;
+
+    qcom,msm-mbhc-usbc-audio-supported = <1>;
+    qcom,msm-mbhc-hphl-swh = <0>;
+    qcom,msm-mbhc-gnd-swh = <0>;
+    fsa4480-i2c-handle = <&usb_analog_hs>;
+
+    asoc-codec  = <&stub_codec>, <&bolero>,
+              <&wcd937x_codec>;
+    asoc-codec-names = "msm-stub-codec.1", "bolero_codec",
+               "wcd937x_codec";
+    qcom,wsa-max-devs = <0>;
+    qcom,msm_audio_ssr_devs = <&audio_apr>, <&q6core>, <&lpi_tlmm>,
+                  <&bolero>;
+    qcom,quin-mi2s-gpios = <&cdc_quin_mi2s_gpios>;
+    micbias-disable-flag = <1>;
+};
+&q6core {
+    cdc_quin_mi2s_gpios: msm_cdc_pinctrl_quin {
+        compatible = "qcom,msm-cdc-pinctrl";
+        pinctrl-names = "aud_active", "aud_sleep";
+        pinctrl-0 = <&lpi_i2s1_sck_active &lpi_i2s1_ws_active &lpi_i2s1_sd0_active &lpi_i2s1_sd1_active>;
+        pinctrl-1 = <&lpi_i2s1_sck_sleep &lpi_i2s1_ws_sleep &lpi_i2s1_sd0_sleep &lpi_i2s1_sd1_sleep>;
+        qcom,lpi-gpios;
+        #gpio-cells = <0>;
+    };
+};
+&qupv3_se4_i2c {
+    status = "ok";
+    tas256x:tas256x@4c {
+        #sound-dai-cells = <0>;
+        compatible = "ti,tas256x";
+        reg = <0x4c>;
+        ti,left-channel = <0x4c>;
+        ti,right-channel = <0x4e>;
+        ti,channels = <2>; /* channel number */
+        ti,reset-gpio = <&tlmm 62 0>;
+        ti,irq-gpio = <&tlmm 63 0x2008>;
+        ti,reset-gpio2 = <&tlmm 106 0>;
+        ti,irq-gpio2 = <&tlmm 61 0x2008>;
+        status = "ok";
+        ti,frame-start = <1>; /* TDM frame start polarity. 0b = Low to High on FSYNC, 1b = High to Low on FSYNC*/
+        ti,rx-edge = <0>; /* TDM RX capture clock polarity. 0b = Rising edge of SBCLK, 1b = Falling edge of SBCLK*/ 
+        ti,rx-offset = <1>; /* TDM RX start of frame to time slot 0 offset (SBCLK cycles).*/
+        ti,tx-edge = <1>; /* TDM TX launch clock polarity. 0b = Rising edge of SBCLK, 1b = Falling edge of SBCLK*/
+        ti,tx-offset = <1>; /* TDM TX start of frame to time slot 0 offset.*/
+        ti,iv-width = <16>; /* IV sense by default is set to 16 bit, in case of power Limiter it should be 12*/
+        ti,vbat-mon = <0>; /* By default Vbat should be 0, in case os power limiter it should be 1*/
+        ti,port_id = <0x1016>; /* Rx port ID use for Qcom platform */
+        ti,module_id_rx=<0x11111112>;  /* Rx Module ID for Qcom platform */
+        ti,module_id_tx=<0x11111111>; /* Tx Module ID for Qcom platform */
+        ti,impedance-min=<2621430>;
+        ti,impedance-max=<5242888>;
+        ti,frequency-min=<501>;
+        ti,frequency-max=<1111>;
+        ti,Qt-min=<101>;
+        ti,impedance-min-r=<2621430>;
+        ti,impedance-max-r=<5242888>;
+        ti,frequency-min-r=<501>;
+        ti,frequency-max-r=<1111>;
+        ti,Qt-min-r=<101>;
+    };
+
+    cs35lxx@50 {
+        compatible = "cirrus,cs35lxx";
+        status = "ok";
+        reg = <0x50>;
+        // VA-supply = <&dummy_vreg>;
+        // VP-supply = <&dummy_vreg>;
+        reset-gpios = <&tlmm 62 0>;
+        interrupt-parent = <&tlmm>;
+        interrupts = <63 IRQ_TYPE_LEVEL_LOW>;
+        irq-gpios = <&tlmm 63 IRQ_TYPE_LEVEL_LOW>;
+        cirrus,boost-ind-nanohenry = <1000>;
+        cirrus,boost-ctl-millivolt = <10000>;
+        cirrus,boost-peak-milliamp = <3700>;
+        cirrus,boost-ctl-select = <0x01>;
+        cirrus,weak-fet-delay = <0x04>;
+        cirrus,weak-fet-thld = <0x01>;
+        cirrus,temp-warn-threshold = <0x01>;
+        cirrus,pll-refclk-sel = <0x0>;
+        cirrus,pll-refclk-freq = <0x21>;
+        cirrus,multi-amp-mode = <0x02>;
+        cirrus,irq-output-enable = <0x1>;
+        cirrus,vpbr-config {
+            cirrus,vpbr-en = <0x00>;
+            cirrus,vpbr-thld = <0x05>;
+            cirrus,vpbr-atk-rate = <0x02>;
+            cirrus,vpbr-atk-vol = <0x01>;
+            cirrus,vpbr-max-attn = <0x09>;
+            cirrus,vpbr-wait = <0x01>;
+            cirrus,vpbr-rel-rate = <0x05>;
+            cirrus,vpbr-mute-en = <0x00>;
+        };
+        cirrus,asp-config {
+            cirrus,asp-rx-width = <0x20>;
+            cirrus,asp-tx-width = <0x10>;
+            cirrus,asp-fmt = <0x02>;
+            cirrus,asp-sample-rate = <0x03>;
+            cirrus,asp-sclk-rate = <0x21>;
+        };
+        cirrus,irq-config {
+            cirrus,irq-drive-select = <0x01>;
+            cirrus,irq-gpio-select = <0x01>;
+        };
+    };
+
+    cs35lxx@52 {
+        compatible = "cirrus,cs35lxx";
+        status = "ok";
+        reg = <0x52>;
+        //VA-supply = <&dummy_vreg>;
+        //VP-supply = <&dummy_vreg>;
+        reset-gpios = <&tlmm 106 0>;
+        interrupt-parent = <&tlmm>;
+        interrupts = <61 IRQ_TYPE_LEVEL_LOW>;
+        irq-gpios = <&tlmm 61 IRQ_TYPE_LEVEL_LOW>;
+        cirrus,boost-ind-nanohenry = <1000>;
+        cirrus,boost-ctl-millivolt = <10000>;
+        cirrus,boost-peak-milliamp = <3250>;
+        cirrus,boost-ctl-select = <0x01>;
+        cirrus,weak-fet-delay = <0x04>;
+        cirrus,weak-fet-thld = <0x01>;
+        cirrus,temp-warn-threshold = <0x01>;
+        cirrus,pll-refclk-sel = <0x0>;
+        cirrus,pll-refclk-freq = <0x21>;
+        cirrus,multi-amp-mode = <0x02>;
+        sound-name-prefix = "R"; // as this is defined as right channel
+        cirrus,irq-output-enable = <0x1>;
+        cirrus,vpbr-config {
+            cirrus,vpbr-en = <0x00>;
+            cirrus,vpbr-thld = <0x05>;
+            cirrus,vpbr-atk-rate = <0x02>;
+            cirrus,vpbr-atk-vol = <0x01>;
+            cirrus,vpbr-max-attn = <0x09>;
+            cirrus,vpbr-wait = <0x01>;
+            cirrus,vpbr-rel-rate = <0x05>;
+            cirrus,vpbr-mute-en = <0x00>;
+        };
+        cirrus,asp-config {
+            cirrus,asp-rx-width = <0x20>;
+            cirrus,asp-tx-width = <0x10>;
+            cirrus,asp-fmt = <0x02>;
+            cirrus,asp-sample-rate = <0x03>;
+            cirrus,asp-sclk-rate = <0x21>;
+        };
+        cirrus,irq-config {
+            cirrus,irq-drive-select = <0x01>;
+            cirrus,irq-gpio-select = <0x01>;
+        };
+    };
+
+    tfa98xx_smartpa@34 {
+        compatible = "tfa,tfa98xx";
+        reg = <0x34>;
+        reset-gpio = <&tlmm 62 0>;
+        //smartpa-vdd-supply = <&L8C>;
+        irq-gpio = <&tlmm 63 0x2008>;
+        is-primary;
+        status = "ok";
+    };
+
+    tfa98xx_smartpa@36 {
+        compatible = "tfa,tfa98xx";
+        reg = <0x36>;
+        reset-gpio = <&tlmm 106 0>;
+        irq-gpio = <&tlmm 61 0x2008>;
+        status = "ok";
+    };
+};

@@ -1,0 +1,13 @@
+&huawei_batt_info {
+	status = "ok";
+	shield_ct_sign = <3>;
+};
+
+&battery_model {
+	io-channels = <&pm7250b_vadc ADC5_BAT_ID_100K_PU>;
+	io-channel-names = "batt-id";
+	support_iio = <1>;
+	iio_read_raw = <1>;
+	iio_read_raw_full_scale = <0x70e4>;
+	status = "ok";
+};

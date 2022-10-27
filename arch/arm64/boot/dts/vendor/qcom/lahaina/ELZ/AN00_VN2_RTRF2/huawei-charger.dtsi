@@ -1,0 +1,12 @@
+&huawei_charger {
+	honor,otg-type = <1>;
+};
+
+&huawei_batt_info {
+	status = "ok";
+	shield_ct_sign = <1>;
+};
+
+&hw_pmucurr_test {
+        power_numbers = "94 95 96 97 99 100";
+};

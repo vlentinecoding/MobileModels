@@ -1,0 +1,32 @@
+&qupv3_se3_i2c {
+	rt9426_battery@55{
+		status = "disabled";
+	};
+
+	cw2217_fg@64 {
+		status = "ok";
+	};
+};
+
+&multi_btb_temp {
+	sensor-names =
+		"cw2217", "comp_para1",
+		"bk_battery", "comp_para";
+};
+
+&sle95250 {
+	status = "ok";
+};
+
+&huawei_batt_identify {
+	status = "ok";
+};
+
+&huawei_batt_info {
+	status = "ok";
+	shield_ct_sign = <1>;
+	battery_checker@0 {
+		matchable = <&sle95250>;
+		status = "ok";
+	};
+};

@@ -1,0 +1,5 @@
+&honor_wifi_info{
+    compatible = "huawei,hw_wifi_info";
+    status = "ok";
+    wifi,pubfile_id = "elz_an20";
+};

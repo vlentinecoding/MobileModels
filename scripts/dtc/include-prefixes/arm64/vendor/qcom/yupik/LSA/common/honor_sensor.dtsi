@@ -1,0 +1,9 @@
+&honor_sensor_info {
+    product_name = "lsa";
+    status = "ok";
+};
+
+&wakeupsensor {
+    compatible = "honor,sensorevent";
+    status = "ok";
+};

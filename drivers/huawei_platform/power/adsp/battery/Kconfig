@@ -1,0 +1,7 @@
+#
+# adsp battery drivers
+#
+
+config ADSP_BATTERY
+        bool "adsp_battery"
+        default n

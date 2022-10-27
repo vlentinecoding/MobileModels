@@ -1,0 +1,4 @@
+#include "../../common/common.dtsi"
+#include "honor_fp.dtsi"
+#include "honor_audio.dtsi"
+#include "huawei_charger.dtsi"

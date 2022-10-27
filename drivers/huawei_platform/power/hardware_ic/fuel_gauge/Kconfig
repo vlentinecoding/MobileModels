@@ -1,0 +1,19 @@
+#
+# fuel gauge ic drivers
+#
+source "drivers/huawei_platform/power/hardware_ic/fuel_gauge/rt9426/Kconfig"
+
+config FUEL_GAUGE
+	bool "fuel gauge"
+	default n
+	help
+	  Say Y here to enable fuel gauge.
+config BQ27Z561_FUEL_GAUGE
+	bool "bq27z561 fuel gauge"
+	depends on FUEL_GAUGE
+	default n
+	help
+	  Say Y here to enable bq27z561 fuel gauge driver.
+	  this driver provides some interfaces to the coul.
+	  also support a few high accuracy battery elements.
+	  for example current and voltage.

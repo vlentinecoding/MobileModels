@@ -1,0 +1,16 @@
+&sle95250 {
+	status = "ok";
+};
+
+&huawei_batt_identify {
+	status = "ok";
+};
+
+&huawei_batt_info {
+	status = "ok";
+	shield_ct_sign = <1>;
+	battery_checker@0 {
+		matchable = <&sle95250>;
+		status = "ok";
+	};
+};

@@ -1,0 +1,8 @@
+#
+# adsp dts drivers
+#
+
+config ADSP_DTS
+	bool "adsp_dts"
+	default n
+

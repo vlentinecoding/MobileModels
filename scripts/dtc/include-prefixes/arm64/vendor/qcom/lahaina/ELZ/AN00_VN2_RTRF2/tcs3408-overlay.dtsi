@@ -1,0 +1,20 @@
+/* Definitions for tcs3707 sensor from ams AG
+ *
+ * Compile:
+ * dtc -@ -I dts -O dtb -o tcs3707-overlay.dtbo tcs3707-overlay.dts
+ */
+
+
+&qupv3_se10_i2c {
+    status = "ok";
+    ams_tcs3408@39 {
+      compatible = "ams,tcs3408";
+      reg = <0x39>;
+      colorsensor-vdd-supply = <&L8C>;
+      flicker_support = <1>;
+      algo_support = <1>;
+      status = "okay";
+    };
+};
+
+

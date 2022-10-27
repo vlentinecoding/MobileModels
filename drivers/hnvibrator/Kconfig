@@ -1,0 +1,21 @@
+config HN_HAPTICS_WRAPPER
+	tristate "wrapper for qcom-hv-haptics"
+	depends on INPUT_QCOM_HV_HAPTICS
+	default n
+	help
+	  Wrapper for qcom-hv-haptics, to support legacy haptics pattern
+
+config HN_HAPTICS_VIBRATOR
+        tristate "vibrator info"
+        default n
+        help
+         Say yes if you want device detect driver.
+          This is for device connected version. If unsure, say N here.
+
+config HONOR_VIBRATOR_LDO
+	tristate "Vibrator-LDO support for Independent LDO"
+	depends on LEDS_CLASS
+	help
+	  This option enables device driver support for the vibrator-ldo
+	  peripheral found on Honor Technologies, Inc.
+	  The vibrator-ldo peripheral is capable of driving ERM vibrators.

@@ -1,0 +1,5 @@
+config TASK_AFFINITY_NOTI
+    bool "notify task affinity"
+    default n
+    help
+      if set, current scene id will be reported to the cpufeature

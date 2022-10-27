@@ -1,0 +1,24 @@
+&qupv3_se9_i2c {
+	rt9426_battery@55{
+		status = "disabled";
+	};
+
+	cw2217_fg@64 {
+		status = "ok";
+	};
+};
+
+&multi_btb_temp {
+	sensor-names =
+		"cw2217", "comp_para1",
+		"bk_battery", "comp_para";
+};
+
+&huawei_charger {
+	honor,otg-type = <1>;
+};
+
+&huawei_batt_info {
+	status = "ok";
+	shield_ct_sign = <1>;
+};

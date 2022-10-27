@@ -1,0 +1,4 @@
+&gpio_check {
+	sandwich_num = "126 122";
+	sandwich_val = "0 0";
+};

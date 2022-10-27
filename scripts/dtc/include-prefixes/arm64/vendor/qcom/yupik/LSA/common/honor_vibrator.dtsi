@@ -1,0 +1,11 @@
+&spmi_bus {
+	qcom,pm8350b@3 {
+		qcom,hv-haptics@f000 {
+			status="disabled";
+		};
+	};
+};
+
+&pm7250b_3_vib {
+	qcom,vib-ldo-volt-uv = <3300000>;
+};

@@ -1,0 +1,6 @@
+ccflags-y	+= -I$(srctree)/drivers/input/misc/dtof/ams/ams_tmf8820/include
+ccflags-y	+= -I$(srctree)/drivers/input/misc/dtof/include
+ccflags-$(CONFIG_TMF882X_QCOM_AP) += -DCONFIG_TMF882X_QCOM_AP
+ccflags-$(CONFIG_TMF882X_NO_HISTOGRAM_SUPPORT) += -DCONFIG_TMF882X_NO_HISTOGRAM_SUPPORT
+obj-y += tmf882x.o
+tmf882x-y += tmf882x_driver.o tmf882x_clock_correction.o tmf882x_mode.o tmf882x_mode_app.o tmf882x_mode_bl.o tmf882x_interface.o intel_hex_interpreter.o

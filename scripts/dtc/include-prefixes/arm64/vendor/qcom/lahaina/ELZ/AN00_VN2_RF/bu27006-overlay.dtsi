@@ -1,0 +1,20 @@
+/* Definitions for bu27006 sensor from rohm
+ *
+ * Compile:
+ * dtc -@ -I dts -O dtb -o bu27006-overlay.dtbo bu27006-overlay.dts
+ */
+
+
+&qupv3_se10_i2c {
+    status = "ok";
+    bu27006@38 {
+      compatible = "rohm,bu27006";
+      reg = <0x38>;
+      colorsensor-vdd-supply = <&L8C>;
+      flicker_support = <1>;
+      algo_support = <1>;
+      status = "okay";
+    };
+};
+
+

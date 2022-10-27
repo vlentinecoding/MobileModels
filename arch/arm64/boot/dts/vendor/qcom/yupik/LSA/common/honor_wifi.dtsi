@@ -1,0 +1,7 @@
+&honor_wifi_info{
+    compatible = "huawei,hw_wifi_info";
+    status = "ok";
+    wifi,chiptype = "WIFI_QUALCOMM_WCN6750";
+    wifi,fw_ver = "QCOM_WCN6750_1.0.1.0.192.3";
+};
+

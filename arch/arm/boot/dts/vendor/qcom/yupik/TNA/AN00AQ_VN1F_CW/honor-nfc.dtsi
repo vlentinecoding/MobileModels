@@ -1,0 +1,27 @@
+&qupv3_se9_i2c {
+	nfc@8 {
+		compatible = "st,st21nfc";
+		status = "ok";
+		reg = <0x8>;
+                interrupt-parent = <&tlmm>;
+                interrupts = <41  0>;
+		st,reset_gpio = <&tlmm 34 0x00>;
+		st,irq_gpio = <&tlmm 41 0x00>;
+		st,ese_pwr_gpio = <&tlmm 38 0x00>;
+
+		st_nfc_nxp_name = "libnfc-nxp-sn110.conf";
+		st_nfc_brcm_conf_name = "libnfc-st-brcm.conf";	
+		st_nfc_card_num = <0x2>;
+		st_nfc_chip_type = "st21nfc";
+
+		st_nfc_single_channel = "false";
+		st_nfc_ese_num = <0x1>;
+		st_nfc_ese_type = "p61";
+	};
+};
+
+&nfc_exist {
+	nfc_exist_flag = "1";
+	nfc_ese_spi_det = "1";
+	status = "ok";
+};

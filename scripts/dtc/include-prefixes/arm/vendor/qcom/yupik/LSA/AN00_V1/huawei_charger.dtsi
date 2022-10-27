@@ -1,0 +1,4 @@
+&huawei_batt_info {
+	status = "disabled";
+	shield_ct_sign = <3>;
+};

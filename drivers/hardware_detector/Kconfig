@@ -1,0 +1,5 @@
+config HARDWARE_DETECTOR
+	default n
+	bool "hardware detector"
+	help
+	  detect hardware dfr problem in factory version.

@@ -1,0 +1,1 @@
+obj-y += adsp_dc_dts_parse.o

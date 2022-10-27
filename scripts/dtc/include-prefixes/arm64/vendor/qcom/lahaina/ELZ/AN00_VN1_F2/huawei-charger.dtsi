@@ -1,0 +1,8 @@
+&huawei_charger {
+	honor,otg-type = <1>;
+};
+
+&huawei_batt_info {
+	status = "ok";
+	shield_ct_sign = <1>;
+};

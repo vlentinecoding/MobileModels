@@ -1,0 +1,10 @@
+#
+# sensorevent report configuration
+#
+
+config SENSOREVENT
+    tristate "sensorevent"
+    depends on HONOR_SENSOR_EVENT
+    default y
+    help
+      add this to support sensorevent

@@ -1,0 +1,6 @@
+#include "lahaina-sde-display.dtsi"
+
+&sde_dsi {
+	pinctrl-names = "panel_active", "panel_suspend", "pwm_pin";
+	pinctrl-2 = <&lcd_backlight_ctrl_default>;
+};

@@ -1,0 +1,120 @@
+/dts-v1/;
+/plugin/;
+
+#include "../common/common.dtsi"
+#include "devkit-lcd.dtsi"
+#include "honor-nfc.dtsi"
+#include "honor-wifi.dtsi"
+#include "honor-camera.dtsi"
+#include "huawei_charger.dtsi"
+#include "as7341-overlay.dtsi"
+
+/ {
+    /* bsp_replace_info @ model = "Honor Technologies, Inc. %product_name%"; */
+    model = "Honor Technologies, Inc. ELZ-AN20-888-106";
+    compatible = "qcom,lahaina-qrd", "qcom,lahaina", "qcom,qrd";
+    /* bsp_replace_info @ qcom,board-id = <%boardid% 0>; */
+    qcom,board-id = <8998 0>;
+};
+
+&rootparam {
+    /* bsp_replace_info @ qcom,boardid = <%boardid_split%>; */
+    /* auto_key_info @ name: boardid type: uint32 default: 0 */
+    qcom,boardid = <8 9 9 8>;
+    /* bsp_replace_info @ qcom,board_name = "%board_name%"; */
+    qcom,board_name = "ELZ_AN20_VN2_CW";
+    /* bsp_replace_info @ qcom,product_name = "%product_name%"; */
+    qcom,product_name = "ELZ-AN20-888-107";
+    /* bsp_replace_info @ hardware_version = "%hardware_version%"; */
+    hardware_version = "HN1ELZM";
+};
+
+&soc {
+    qcom,pcie@1c08000 {
+        compatible = "qcom,pci-msm";
+        status = "disabled";
+    };
+};
+
+&wcd938x_codec {
+    compatible = "qcom,wcd938x-codec";
+    cdc-vdd-mic-bias-supply = <&BOB>;
+    qcom,cdc-vdd-mic-bias-voltage = <3296000 3500000>;
+    qcom,cdc-vdd-mic-bias-current = <30000>;
+};
+
+&S1C {
+    regulator-name = "pm8350c_s1";
+    regulator-min-microvolt = <1800000>;
+    regulator-max-microvolt = <2200000>;
+    qcom,init-voltage = <1880000>;
+};
+
+&antenna_board_detect {
+    antenna_board_match_range = <1100 1300>;
+};
+
+&huawei_audio_info {
+    product_identifier = "elze";
+};
+
+&rec_audio_hw_config {
+	product_name = "elze";
+};
+
+&honor_sensor_info {
+    product_name = "elzp";
+};
+
+&qupv3_se11_spi_active {
+	mux {
+		pins = "gpio49";
+		function = "qup11";
+	};
+
+	config {
+		pins = "gpio49";
+		drive-strength = <6>;
+		bias-disable;
+	};
+};
+
+&qupv3_se11_spi_sleep {
+	mux {
+		pins = "gpio49";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio49";
+		drive-strength = <6>;
+		bias-pull-down;
+	};
+};
+
+&qupv3_se11_spi {
+	status = "ok";
+	honor_ir@0 {
+		compatible = "honor_ir";
+		reg = <0x0>;
+		spi-max-frequency = <20000000>;
+		honor_ir,spi-bpw = <8>;
+		honor_ir,spi-clk-speed = <2000000>;
+		honor_ir,spi-mode = <0>;
+		honor_ir,honor-field = <12345>;
+		status = "ok";
+	};
+};
+
+&soc {
+	hsphy@88e3000{
+		qcom,param-override-seq-host =
+			<0xc7 0x6c      /* override_x0 */
+			 0x0c 0x70      /* override_x1 */
+			 0x17 0x74>;    /* override x2 */
+		qcom,param-override-seq =
+			<0xe6 0x6c      /* override_x0 */
+			 0x0c 0x70      /* override_x1 */
+			 0x17 0x74>;    /* override x2 */
+	};
+};

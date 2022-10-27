@@ -1,0 +1,65 @@
+&qupv3_se0_i2c {
+	stwlc88@61 {
+		status = "ok";
+	};
+	wireless_cps4057@30 {
+		support_multi_tx = <1>;
+		#include "../../../huawei_charger/cps4057_ELZ_fodpara_proplus.dtsi"
+		status = "ok";
+	};
+	pca9488@55 {
+		status = "ok";
+	};
+	charge_pump_hl1512@51 {
+		status = "ok";
+	};
+};
+
+&boost_5v {
+	status = "ok";
+};
+
+&wireless_ps {
+	status = "ok";
+};
+
+&wireless_charger {
+	fod_status = <0x3A41>;
+	fod_status_para = <
+		/* tx_type  fod_status */
+		13    0x2B3E
+	>;
+	status = "ok";
+};
+
+&wireless_sc {
+	status = "ok";
+};
+
+&wireless_tx {
+	status = "ok";
+};
+
+&ovp_channel_switch {
+	status = "ok";
+};
+
+&wired_channel_switch {
+	status = "ok";
+};
+
+&huawei_ptst {
+	/* definition refered to huawei_power_test.dtsi */
+	wlc_mmi = <1>;
+	wlc_mmi_para = <40 0x07 2 1300 7500 0>;
+	wl_hw_test = <1>;
+	wl_hw_module = <0x1>;
+	wlc_wp = <1>;
+	wlc_wp_para = <1000>;
+	status = "ok";
+};
+
+&huawei_batt_info {
+	status = "ok";
+	shield_ct_sign = <1>;
+};

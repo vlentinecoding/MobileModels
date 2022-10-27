@@ -1,0 +1,6 @@
+#include "../../lahaina-qrd.dtsi"
+#include "honor_dev_detect/honor_dev_detect.dtsi"
+
+&card_tray_detect {
+	card_tray_gpio = <444>;
+};

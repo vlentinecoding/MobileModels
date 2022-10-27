@@ -1,0 +1,33 @@
+/dts-v1/;
+/plugin/;
+
+#include "../common/common.dtsi"
+#include "devkit-lcd.dtsi"
+#include "honor-nfc.dtsi"
+#include "honor-camera.dtsi"
+#include "huawei_charger.dtsi"
+#include "honor-wifi.dtsi"
+
+/ {
+    /* bsp_replace_info @ model = "Honor Technologies, Inc. %product_name%"; */
+    model = "Honor Technologies, Inc. NTH-AN00-777-007";
+    compatible = "qcom,yupik-qrd", "qcom,yupik", "qcom,qrd";
+    /* bsp_replace_info @ qcom,board-id = <%boardid% 0>; */
+    qcom,board-id = <8572 0>;
+};
+
+&rootparam {
+    /* bsp_replace_info @ qcom,boardid = <%boardid_split%>; */
+    /* auto_key_info @ name: boardid type: uint32 default: 0 */
+    qcom,boardid = <8 5 7 2>;
+    /* bsp_replace_info @ qcom,board_name = "%board_name%"; */
+    qcom,board_name = "NTH_AN00_VN2_VD";
+    /* bsp_replace_info @ qcom,product_name = "%product_name%"; */
+    qcom,product_name = "NTH-AN00-777-007";
+    /* bsp_replace_info @ hardware_version = "%hardware_version%"; */
+    hardware_version = "HN2NTHM";
+};
+
+&antenna_board_detect {
+    antenna_board_match_range = <1320 2000>;
+};

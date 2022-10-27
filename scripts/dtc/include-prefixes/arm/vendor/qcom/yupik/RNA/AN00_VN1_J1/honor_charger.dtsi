@@ -1,0 +1,9 @@
+&qupv3_se3_i2c {
+	rt9426_battery@55{
+		status = "disabled";
+	};
+
+	rt9426a_fg@55 {
+		status = "ok";
+	};
+};

@@ -1,0 +1,7 @@
+#
+# adsp usb drivers
+#
+
+config ADSP_USB
+        bool "adsp_usb"
+        default n

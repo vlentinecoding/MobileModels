@@ -1,0 +1,61 @@
+/* Definitions for TMF882X time-of-flight sensor from ams AG
+ *
+ * Compile:
+ * dtc -@ -I dts -O dtb -o tmf882x-overlay.dtbo tmf882x-overlay.dts
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+  compatible = "brcm,bcm2708";
+
+  fragment@0 {
+    target = <&i2c1>;
+    __overlay__ {
+      status = "okay";
+    };
+  };
+
+  fragment@1 {
+    target = <&gpio>;
+    __overlay__ {
+      tmf882x_pins: tmf882x_pins {
+        brcm,pins = <20 16>; /*interrupt, enable*/
+        brcm,function = <0 1>; /*INT input, enable output*/
+        brcm,pull = <0 1>; /*disable pull on INT, enable pull-down on CE*/
+      };
+    };
+  };
+
+  fragment@2 {
+    target = <&i2c1>;
+    __overlay__ {
+      #address-cells = <1>;
+      #size-cells = <0>;
+      status = "okay";
+
+      tmf882x: tmf882x@41 {
+        compatible = "ams,tmf882x";
+        reg = <0x41>; /* x41 for HW, x39 for test chip */
+        pinctrl-names = "default";
+        pinctrl-0 = <&tmf882x_pins>;
+        interrupt-parent = <&gpio>;
+        interrupts = <20 8>; /*high-to-low trigger*/
+        irq-gpios = <&gpio 20 0>; /*pin38 on header*/
+        enable-gpios = <&gpio 16 0>; /*pin36 on header*/
+      };
+    };
+  };
+
+  __overrides__ {
+    tof_interrupt = <&tmf882x_pins>,"brcm,pins:0",
+        <&tmf882x>,"interrupts:0",
+        <&tmf882x>,"irq-gpios:4";
+    tof_interrupt_trigger = <&tmf882x>,"interrupts:4";
+    tof_enable = <&tmf882x_pins>,"brcm,pins:4",
+        <&tmf882x>,"enable-gpios:4";
+    tof_i2c_addr = <&tmf882x>,"reg:0";
+  };
+};
+

@@ -1,0 +1,19 @@
+config HONOR_DP_CUST
+	tristate "Support for dp cust"
+	default n
+	help
+	  Say Y here if you want to support dp cust
+
+config HONOR_DP_FACTORY
+	tristate "Support for dp factory"
+	default n
+	depends on HONOR_DP_CUST
+	help
+	  Say Y here if you want to support dp factory
+
+config HONOR_DP_DSM
+	tristate "Support for dp dsm"
+	default n
+	depends on HONOR_DP_CUST
+	help
+	  Say Y here if you want to support dp dsm

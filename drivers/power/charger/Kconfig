@@ -1,0 +1,9 @@
+config HUAWEI_DSM
+	bool "huawei power dsm"
+
+config HUAWEI_BATT
+	bool "huawei batt"
+
+config PMIC_AP_CHARGER
+        bool "pmic ap charger"
+        default n

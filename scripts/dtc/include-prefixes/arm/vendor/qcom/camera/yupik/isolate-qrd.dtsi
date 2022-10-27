@@ -1,0 +1,57 @@
+&led_flash_triple_rear {
+    status = "disable";
+};
+
+&led_flash_triple_rear_aux {
+    status = "disable";
+};
+
+
+&led_flash_triple_rear_aux2 {
+    status = "disable";
+};
+
+&actuator_triple_tele {
+    status = "disable";
+};
+
+&eeprom_front {
+    status = "disable";
+};
+
+&eeprom_triple_tele {
+    status = "disable";
+};
+
+&camera_sensor0 {
+    status = "disable";
+};
+
+&camera_sensor1 {
+    status = "disable";
+};
+
+&actuator_triple_wide {
+    status = "disable";
+};
+
+&actuator_triple_uw {
+    status = "disable";
+};
+
+&eeprom_triple_wide {
+    status = "disable";
+};
+
+&eeprom_triple_uw {
+    status = "disable";
+};
+
+&camera_sensor2 {
+    status = "disable";
+};
+
+&camera_sensor3 {
+    status = "disable";
+};
+

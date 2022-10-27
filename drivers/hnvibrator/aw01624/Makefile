@@ -1,0 +1,1 @@
+obj-$(CONFIG_HN_HAPTICS_VIBRATOR) += aw8624.o

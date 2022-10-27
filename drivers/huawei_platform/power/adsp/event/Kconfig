@@ -1,0 +1,7 @@
+#
+# adsp ui event drivers
+#
+
+config ADSP_UI_EVENT
+        bool "adsp_ui_event"
+        default n

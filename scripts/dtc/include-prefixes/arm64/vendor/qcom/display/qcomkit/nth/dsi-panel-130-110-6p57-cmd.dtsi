@@ -1,0 +1,716 @@
+&mdss_mdp {
+	dsi_130_110_6p57_cmd: qcom,mdss_dsi_130_110_6p57_cmd {
+		qcom,mdss-dsi-panel-name = "07407168fb611839";
+		qcom,mdss-dsi-panel-type = "dsi_cmd_mode";
+		qcom,mdss-dsi-panel-physical-type = "oled";
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-bpp = <24>;
+		qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-underflow-color = <0xff>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,ulps-enabled;
+		qcom,mdss-pan-physical-width-dimension = <70>;
+		qcom,mdss-pan-physical-height-dimension = <152>;
+		qcom,mdss-dsi-lcd-model = "130_110 6p57 1080 x 2340";
+
+		/* mipi dsi setting */
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+		qcom,dsi-sec-ctrl-num = <1>;
+		qcom,dsi-sec-phy-num = <1>;
+		qcom,mdss-dsi-traffic-mode = "non_burst_sync_event";
+		qcom,mdss-dsi-lane-map = "lane_map_0123";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,dsi-select-clocks = "mux_byte_clk0", "mux_pixel_clk0";
+		qcom,dsi-select-sec-clocks = "mux_byte_clk1", "mux_pixel_clk1";
+
+		/* TE setting */
+		qcom,mdss-dsi-te-pin-select = <1>;
+		qcom,mdss-dsi-wr-mem-start = <0x2c>;
+		qcom,mdss-dsi-wr-mem-continue = <0x3c>;
+		qcom,mdss-dsi-te-dcs-command = <1>;
+		qcom,mdss-dsi-te-check-enable;
+		qcom,mdss-dsi-te-using-te-pin;
+
+		/* hdr setting */
+		qcom,mdss-dsi-panel-hdr-enabled;
+		qcom,mdss-dsi-panel-hdr-color-primaries = <14500 15500 32000
+			17000 15500 30000 8000 3000>;
+		qcom,mdss-dsi-panel-peak-brightness = <4200000>;
+		qcom,mdss-dsi-panel-blackness-level = <3230>;
+
+		/* hbm enable */
+		qcom,mdss-dsi-panel-hbm-enabled;
+		/* hbm delay threshold */
+		qcom,mdss-dsi-hbm-left-delaythr = <500>;
+		qcom,mdss-dsi-hbm-right-delaythr = <6500>;
+
+		/* gpio setting */
+		qcom,dsi-panel-gpio-address = <0x0F100000 0x1000>;
+		qcom,dsi-panel-gpio-pins = <44 99>;
+		qcom,dsi-panel-gpio-names = "reset-gpio", "vdd-gpio";
+
+		/* esd check setting */
+		qcom,mdss-dsi-panel-status-check-mode = "reg_read";
+		qcom,mdss-dsi-panel-status-command = [
+			06 01 00 01 00 00 01 0a
+			06 01 00 01 00 00 01 0d
+			39 01 00 00 01 00 05 FF AA 55 A5 81
+			15 01 00 00 01 00 02 6F 0F
+			06 01 00 01 00 00 01 FA
+		];
+		qcom,mdss-dsi-panel-status-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-panel-status-value = <0x9c 0x00 0x00 0x00 0x00>;
+		qcom,mdss-dsi-panel-status-read-length = <1 1 1 1 1>;
+		qcom,esd-check-enabled;
+
+		/* pcd detect*/
+		qcom,mdss-dsi-panel-lcd-check-pcd-support;
+		qcom,mdss-dsi-panel-lcd-pcd_value_compare_mode = <1>;
+		qcom,mdss-dsi-panel-lcd-pcd_mask = <0xff>;
+		qcom,mdss-dsi-panel-lcd-pcd_det_num = <1>;
+		qcom,mdss-dsi-panel-lcd-check-pcd-expect_vals = <0xc2>;
+
+		/* Hor line */
+		qcom,mdss-dsi-panel-lcd-hor-line-support;
+		qcom,mdss-dsi-panel-lcd-hor-line-duration = <600>;
+
+		/* VTC line */
+		qcom,mdss-dsi-panel-lcd-vtc-line-support;
+
+		/* check reg */
+		qcom,mdss-dsi-panel-lcd-check-reg-enabled;
+		qcom,mdss-dsi-panel-lcd-check-reg-expect_vals = <0x9c>;
+
+		/* oem info */
+		qcom,mdss-dsi-panel-oem-info-enabled;
+		qcom,mdss-dsi-panel-oem-2d-barcode-enabled;
+		qcom,mdss-dsi-panel-oem-sn-enabled;
+
+		/* backlight setting */
+		qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+		qcom,mdss-dsi-bl-min-level = <1>;
+		qcom,mdss-dsi-bl-max-level = <4095>;
+		qcom,mdss-brightness-max-level = <4095>;
+		qcom,mdss-dsi-bl-inverted-dbv;
+		qcom,mdss-dsi-bl-max-nit = <1000>;
+
+		/* dfps setting */
+		qcom,dsi-fps-list = <60 120>;
+
+		/* power on/off timing setting */
+		qcom,platform-reset-gpio = <&tlmm 44 0>;
+		qcom,mdss-dsi-reset-sequence = <1 1>, <0 1>, <1 10>;
+		qcom,mdss-dsi-reset-pre-off-sleep = <2>;
+		qcom,mdss-dsi-panel-reset-in-lp11;
+		qcom,panel-supply-entries {
+			qcom,panel-supply-entry@0 {
+					reg = <0>;
+					qcom,supply-name = "vddio";
+					qcom,supply-min-voltage = <1800000>;
+					qcom,supply-max-voltage = <1800000>;
+					qcom,supply-enable-load = <60700>;
+					qcom,supply-disable-load = <80>;
+					qcom,supply-post-on-sleep = <0>;
+					qcom,supply-post-off-sleep = <1>;
+			};
+			qcom,panel-supply-entry@1 {
+					reg = <1>;
+					qcom,supply-name = "gpio";
+					qcom,supply-gpio-num = <&tlmm 99 0>;
+					qcom,supply-min-voltage = <1230000>;
+					qcom,supply-max-voltage = <1230000>;
+					qcom,supply-enable-load = <10000>;
+					qcom,supply-disable-load = <0>;
+					qcom,supply-post-on-sleep = <0>;
+					qcom,supply-post-off-sleep = <4>;
+			};
+			qcom,panel-supply-entry@2 {
+					reg = <2>;
+					qcom,supply-name = "vdd";
+					qcom,supply-min-voltage = <3000000>;
+					qcom,supply-max-voltage = <3000000>;
+					qcom,supply-enable-load = <10000>;
+					qcom,supply-disable-load = <0>;
+					qcom,supply-post-on-sleep = <10>;
+					qcom,supply-post-off-sleep = <0>;
+			};
+		};
+		/* display timing0 */
+		qcom,mdss-dsi-display-timings {
+			timing@0 {
+				qcom,mdss-dsi-panel-framerate = <60>;
+				qcom,mdss-dsi-panel-width = <1080>;
+				qcom,mdss-dsi-panel-height = <2340>;
+				qcom,mdss-dsi-h-front-porch = <60>;
+				qcom,mdss-dsi-h-back-porch = <20>;
+				qcom,mdss-dsi-h-pulse-width = <20>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-v-back-porch = <20>;
+				qcom,mdss-dsi-v-front-porch = <60>;
+				qcom,mdss-dsi-v-pulse-width = <40>;
+				qcom,mdss-dsi-h-left-border = <0>;
+				qcom,mdss-dsi-h-right-border = <0>;
+				qcom,mdss-dsi-v-top-border = <0>;
+				qcom,mdss-dsi-v-bottom-border = <0>;
+				qcom,mdss-dsi-panel-jitter = <0x4 0x1>;
+
+				qcom,mdss-dsi-on-command = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					39 01 00 00 00 00 05 C7 78 30 32 0A
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+					15 01 00 00 00 00 02 6F 02
+					15 01 00 00 00 00 02 B5 46
+					39 01 00 00 00 00 03 C0 66 F3
+					39 01 00 00 00 00 05 FF AA 55 A5 80
+					15 01 00 00 00 00 02 6F 61
+					15 01 00 00 00 00 02 F3 80
+					15 01 00 00 00 00 02 03 01
+					15 01 00 00 00 00 02 90 01
+					39 01 00 00 00 00 13 91 89 28 00 14 C2 00 03 1C 02 8C 00 0F 05 0E 02 8B 10 F0
+					39 01 00 00 00 00 03 44 09 14
+					15 01 00 00 00 00 02 35 00
+					15 01 00 00 00 00 02 53 20
+					39 01 00 00 00 00 05 2A 00 00 04 37
+					39 01 00 00 00 00 05 2B 00 00 09 23
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					39 01 00 00 00 00 04 D1 07 07 14
+					39 01 00 00 00 00 04 D2 00 40 00
+					15 01 00 00 00 00 02 2F 01
+					05 01 00 00 46 00 01 11
+					05 01 00 00 4f 00 01 29
+				];
+
+				qcom,mdss-dsi-off-command = [
+					05 01 00 00 00 00 01 28
+					05 01 00 00 46 00 01 10
+				];
+
+				qcom,mdss-dsi-fp-hbm-enable-commands = [
+					39 01 00 00 00 00 03 51 0F FF
+				];
+
+				qcom,mdss-dsi-timing-switch-command = [
+					15 01 00 00 09 00 02 2F 01
+				];
+
+				qcom,mdss-dsi-lp1-command = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 02
+					15 00 00 00 00 00 02 B5 16
+					39 00 00 00 00 00 03 51 00 00
+					15 00 00 00 00 00 02 2F 01
+					05 01 00 00 00 00 01 39
+				];
+
+				qcom,mdss-dsi-nolp-command = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 02
+					15 00 00 00 00 00 02 B5 46
+					39 00 00 00 00 00 03 51 00 00
+					05 01 00 00 00 00 01 38
+				];
+
+				qcom,mdss-dsi-alpm-low-light-commands = [
+					39 01 00 00 00 00 05 51 00 FF 01 24
+				];
+
+				qcom,mdss-dsi-alpm-middle-light-commands = [
+					39 01 00 00 00 00 05 51 01 9C 06 DB
+				];
+
+				qcom,mdss-dsi-alpm-high-light-commands = [
+					39 01 00 00 00 00 05 51 04 79 0F FE
+				];
+
+				qcom,mdss-dsi-panel-lcd-check-reg-commands = [
+					06 01 00 01 00 00 01 0a
+				];
+
+				qcom,mdss-dsi-oeminfo-read-commands = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					06 01 00 01 00 00 08 D6 00 00 00 00 00 00 00
+					06 01 00 01 00 00 07 D7 00 00 00 00 00 00
+					06 01 00 01 00 00 06 BF 00 00 00 00 00
+				];
+
+				qcom,mdss-dsi-lcd-pcd-check-open-commands = [
+					39 01 00 00 0a 00 06 F0 55 AA 52 08 01
+					39 01 00 00 0a 00 05 D0 00 31 00 00
+				];
+
+				qcom,mdss-dsi-lcd-pcd-check-reg-commands = [
+					39 01 00 00 0a 00 06 F0 55 AA 52 08 01
+					15 01 00 00 0a 00 02 6F 02
+					06 01 00 00 0A 00 01 D0
+				];
+
+				qcom,mdss-dsi-lcd-pcd-check-close-commands = [
+					39 01 00 00 78 00 06 F0 55 AA 52 08 01
+					39 01 00 00 0A 00 03 D0 00 00
+				];
+
+				qcom,mdss-dsi-vtc-line-test-commands = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+					15 01 00 00 00 00 02 6F 06
+					15 01 00 00 00 00 02 B5 4E
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					39 01 00 00 00 00 02 CF 00
+					39 01 00 00 00 00 03 B5 00 F0
+					39 01 00 00 00 00 03 B6 01 60
+					39 01 00 00 00 00 06 F0 55 AA 52 08 07
+					39 01 00 00 00 00 16 B1 10 60 40 00 20 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 01 00 00 00 00 06 F0 55 AA 52 08 06
+					15 01 00 00 00 00 02 6F 03
+					39 01 00 00 00 00 03 B2 31 31
+					39 01 00 00 00 00 06 F0 55 AA 52 08 06
+					15 01 00 00 00 00 02 6F 02
+					39 01 00 00 00 00 03 B7 31 31
+					15 01 00 00 00 00 02 2F 03
+				];
+
+				qcom,mdss-dsi-hor-line-test-commands = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 06
+					15 01 00 00 00 00 02 6F 02
+					15 01 00 00 00 00 03 B1 31 31
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					39 01 00 00 00 00 02 B3 23
+					39 01 00 00 00 00 02 B4 23
+					39 01 00 00 00 00 02 B0 0B
+					39 01 00 00 00 00 02 B1 08
+					39 01 00 00 00 00 09 B7 46 46 46 46 46 46 46 46
+					39 01 00 00 00 00 08 B8 5F 5F 5F 5F 5F 5F 5F
+					15 01 00 00 00 00 02 2F 03
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 29
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 28
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 27
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 26
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 25
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 24
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 23
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 22
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 21
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					05 01 00 00 78 00 01 11
+					05 01 00 00 00 00 01 29
+				];
+
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-off-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-panel-lcd-check-reg-commands-state =
+					"dsi_lp_mode";
+				qcom,mdss-dsi-oeminfo-read-commands-state =
+					"dsi_lp_mode";
+				qcom,mdss-dsi-lcd-pcd-check-open-commands-state =
+					"dsi_lp_mode";
+				qcom,mdss-dsi-lcd-pcd-check-reg-commands-state =
+					"dsi_lp_mode";
+				qcom,mdss-dsi-lcd-pcd-check-close-commands-state =
+					"dsi_lp_mode";
+
+				qcom,mdss-dsi-h-sync-pulse = <0>;
+				qcom,compression-mode = "dsc";
+				qcom,mdss-dsc-version = <0x12>;
+				qcom,mdss-dsc-slice-height = <20>;
+				qcom,mdss-dsc-slice-width = <1080>;
+				qcom,mdss-dsc-slice-per-pkt = <1>;
+				qcom,mdss-dsc-bit-per-component = <10>;
+				qcom,mdss-dsc-bit-per-pixel = <8>;
+				qcom,mdss-dsc-block-prediction-enable;
+				qcom,mdss-dsi-panel-phy-timings = [00 11 03 04 12 1e 04
+						04 04 03 02 04 0e 09];
+				qcom,display-topology = <1 1 1>;
+				qcom,default-topology-index = <0>;
+			};
+			timing@1 {
+				qcom,mdss-dsi-panel-framerate = <120>;
+				qcom,mdss-dsi-panel-width = <1080>;
+				qcom,mdss-dsi-panel-height = <2340>;
+				qcom,mdss-dsi-h-front-porch = <60>;
+				qcom,mdss-dsi-h-back-porch = <20>;
+				qcom,mdss-dsi-h-pulse-width = <20>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-v-back-porch = <20>;
+				qcom,mdss-dsi-v-front-porch = <60>;
+				qcom,mdss-dsi-v-pulse-width = <40>;
+				qcom,mdss-dsi-h-left-border = <0>;
+				qcom,mdss-dsi-h-right-border = <0>;
+				qcom,mdss-dsi-v-top-border = <0>;
+				qcom,mdss-dsi-v-bottom-border = <0>;
+				qcom,mdss-dsi-panel-jitter = <0x4 0x1>;
+
+				qcom,mdss-dsi-on-command = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					39 01 00 00 00 00 05 C7 78 30 32 0A
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+					15 01 00 00 00 00 02 6F 02
+					15 01 00 00 00 00 02 B5 46
+					39 01 00 00 00 00 03 C0 66 F3
+					39 01 00 00 00 00 05 FF AA 55 A5 80
+					15 01 00 00 00 00 02 6F 61
+					15 01 00 00 00 00 02 F3 80
+					15 01 00 00 00 00 02 03 01
+					15 01 00 00 00 00 02 90 01
+					39 01 00 00 00 00 13 91 89 28 00 14 C2 00 03 1C 02 8C 00 0F 05 0E 02 8B 10 F0
+					39 01 00 00 00 00 03 44 09 14
+					15 01 00 00 00 00 02 35 00
+					15 01 00 00 00 00 02 53 20
+					39 01 00 00 00 00 05 2A 00 00 04 37
+					39 01 00 00 00 00 05 2B 00 00 09 23
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					39 01 00 00 00 00 04 D1 07 07 14
+					39 01 00 00 00 00 04 D2 00 40 00
+					15 01 00 00 00 00 02 2F 03
+					05 01 00 00 46 00 01 11
+					05 01 00 00 4f 00 01 29
+				];
+
+				qcom,mdss-dsi-off-command = [
+					05 01 00 00 00 00 01 28
+					05 01 00 00 46 00 01 10
+				];
+
+				qcom,mdss-dsi-fp-hbm-enable-commands = [
+					39 01 00 00 00 00 03 51 0F FF
+				];
+
+				qcom,mdss-dsi-timing-switch-command = [
+					15 01 00 00 00 00 02 2F 03
+				];
+
+				qcom,mdss-dsi-lp1-command = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 02
+					15 00 00 00 00 00 02 B5 16
+					39 00 00 00 00 00 03 51 00 00
+					15 00 00 00 00 00 02 2F 01
+					05 01 00 00 00 00 01 39
+				];
+
+				qcom,mdss-dsi-nolp-command = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 02
+					15 00 00 00 00 00 02 B5 46
+					39 00 00 00 00 00 03 51 00 00
+					05 00 00 00 00 00 01 38
+					15 01 00 00 00 00 02 2F 03
+				];
+
+				qcom,mdss-dsi-alpm-low-light-commands = [
+					39 01 00 00 00 00 05 51 00 FF 01 24
+				];
+
+				qcom,mdss-dsi-alpm-middle-light-commands = [
+					39 01 00 00 00 00 05 51 01 9C 06 DB
+				];
+
+				qcom,mdss-dsi-alpm-high-light-commands = [
+					39 01 00 00 00 00 05 51 04 79 0F FE
+				];
+
+				qcom,mdss-dsi-panel-lcd-check-reg-commands = [
+					06 01 00 01 00 00 01 0a
+				];
+
+				qcom,mdss-dsi-oeminfo-read-commands = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					06 01 00 01 00 00 08 D6 00 00 00 00 00 00 00
+					06 01 00 01 00 00 07 D7 00 00 00 00 00 00
+					06 01 00 01 00 00 06 BF 00 00 00 00 00
+				];
+
+				qcom,mdss-dsi-lcd-pcd-check-open-commands = [
+					39 01 00 00 0a 00 06 F0 55 AA 52 08 01
+					39 01 00 00 0a 00 05 D0 00 31 00 00
+				];
+
+				qcom,mdss-dsi-lcd-pcd-check-reg-commands = [
+					39 01 00 00 0a 00 06 F0 55 AA 52 08 01
+					15 01 00 00 0a 00 02 6F 02
+					06 01 00 00 0A 00 01 D0
+				];
+
+				qcom,mdss-dsi-lcd-pcd-check-close-commands = [
+					39 01 00 00 78 00 06 F0 55 AA 52 08 01
+					39 01 00 00 0A 00 03 D0 00 00
+				];
+
+				qcom,mdss-dsi-vtc-line-test-commands = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+					15 01 00 00 00 00 02 6F 06
+					15 01 00 00 00 00 02 B5 4E
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					39 01 00 00 00 00 02 CF 00
+					39 01 00 00 00 00 03 B5 00 F0
+					39 01 00 00 00 00 03 B6 01 60
+					39 01 00 00 00 00 06 F0 55 AA 52 08 07
+					39 01 00 00 00 00 16 B1 10 60 40 00 20 50 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 01 00 00 00 00 06 F0 55 AA 52 08 06
+					15 01 00 00 00 00 02 6F 03
+					39 01 00 00 00 00 03 B2 31 31
+					39 01 00 00 00 00 06 F0 55 AA 52 08 06
+					15 01 00 00 00 00 02 6F 02
+					39 01 00 00 00 00 03 B7 31 31
+					15 01 00 00 00 00 02 2F 03
+				];
+
+				qcom,mdss-dsi-hor-line-test-commands = [
+					39 01 00 00 00 00 06 F0 55 AA 52 08 06
+					15 01 00 00 00 00 02 6F 02
+					15 01 00 00 00 00 03 B1 31 31
+					39 01 00 00 00 00 06 F0 55 AA 52 08 01
+					39 01 00 00 00 00 02 B3 23
+					39 01 00 00 00 00 02 B4 23
+					39 01 00 00 00 00 02 B0 0B
+					39 01 00 00 00 00 02 B1 08
+					39 01 00 00 00 00 09 B7 46 46 46 46 46 46 46 46
+					39 01 00 00 00 00 08 B8 5F 5F 5F 5F 5F 5F 5F
+					15 01 00 00 00 00 02 2F 03
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 29
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 28
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 27
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 26
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 25
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 24
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 23
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 22
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 06 F0 55 AA 52 08 02
+					15 01 00 00 00 00 02 CC 10
+					15 01 00 00 00 00 02 BF 21
+					39 01 00 00 00 00 13 B0 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B1 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B2 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B3 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B4 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B5 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B6 00 00 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 13 B7 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					39 01 00 00 00 00 0F B8 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF 0F FF
+					05 01 00 00 78 00 01 11
+					05 01 00 00 00 00 01 29
+				];
+
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+				qcom,mdss-dsi-off-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-panel-lcd-check-reg-commands-state =
+					"dsi_lp_mode";
+				qcom,mdss-dsi-oeminfo-read-commands-state =
+					"dsi_lp_mode";
+				qcom,mdss-dsi-lcd-pcd-check-open-commands-state =
+					"dsi_lp_mode";
+				qcom,mdss-dsi-lcd-pcd-check-reg-commands-state =
+					"dsi_lp_mode";
+				qcom,mdss-dsi-lcd-pcd-check-close-commands-state =
+					"dsi_lp_mode";
+
+				qcom,mdss-dsi-h-sync-pulse = <0>;
+				qcom,compression-mode = "dsc";
+				qcom,mdss-dsc-version = <0x12>;
+				qcom,mdss-dsc-slice-height = <20>;
+				qcom,mdss-dsc-slice-width = <1080>;
+				qcom,mdss-dsc-slice-per-pkt = <1>;
+				qcom,mdss-dsc-bit-per-component = <10>;
+				qcom,mdss-dsc-bit-per-pixel = <8>;
+				qcom,mdss-dsc-block-prediction-enable;
+				qcom,mdss-dsi-panel-phy-timings = [00 1c 07 07 17 16 07
+					07 07 08 02 04 18 0c];
+				qcom,display-topology = <1 1 1>;
+				qcom,default-topology-index = <0>;
+			};
+		};
+	};
+};

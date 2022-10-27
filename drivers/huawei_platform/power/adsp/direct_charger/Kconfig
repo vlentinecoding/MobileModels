@@ -1,0 +1,7 @@
+#
+# adsp direct charger drivers
+#
+
+config ADSP_DIRECT_CHARGER
+        bool "adsp_direct_charger"
+        default n

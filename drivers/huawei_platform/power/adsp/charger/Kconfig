@@ -1,0 +1,7 @@
+#
+# adsp charger drivers
+#
+
+config ADSP_CHARGER
+        bool "adsp_charger"
+        default n

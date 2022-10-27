@@ -1,0 +1,4 @@
+&huawei_batt_info {
+	status = "ok";
+	shield_ct_sign = <3>;
+};

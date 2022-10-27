@@ -1,0 +1,19 @@
+
+&dp_cust_info {
+    compatible = "honor,dp_cust_info";
+    status = "ok";
+
+    default_source_mode = <1>; /* 0 DIFF_SOURCE, 1 SAME_SOURCE(default) */
+
+    ext_env_std_lanes = <4>;
+    ext_env_std_rate = <2>; /* HBR2 */
+    ext_env_std_resolution_h = <3840>; /* horizontal */
+    ext_env_std_resolution_v = <2160>; /* vertical */
+    /* Some TVs can only support 59 fps(max: 60fps), so the maximum fps here is set to 55. */
+    ext_env_std_fps = <55>;
+
+    check_lanes_rate;
+    check_display_4k;
+    check_display_60fps;
+    need_report_event;
+};
